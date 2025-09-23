@@ -1,0 +1,118 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""program"""
+__author__ = "JamongSS"
+__date__ = "2025-09-23"
+__last_modified_by__ = "JamongSS"
+__last_modified_date__ = "0000-00-00"
+__maintainer__ = "JamongSS"
+
+###########
+# imports #
+###########
+import os
+import grp
+import sys
+import traceback
+import configparser
+import supervisor.supervisord
+
+
+###################
+# Global variable #
+###################
+ENV_USER = '%(ENV_USER)s'
+ENV_GROUP = 'user_group'
+ENV_VAR_LIST = [
+    '%(ENV_ENGN)s', '%(ENV_ENGN_ROOT)s',
+    '%(ENV_MAUM_ROOT)s'
+]
+
+
+#########
+# class #
+#########
+class Svctl(object):
+    def __init__(self):
+        try:
+            # self.pattern = r'%\(([^)]+)\)s'
+            self.engn_root = os.path.dirname(os.path.abspath(__file__))
+            conf_path = os.path.join(
+                self.engn_root, 'cfg', 'supervisord.conf')
+            self.re_conf_path = os.path.join(
+                self.engn_root, 'cfg', 'replace_supervisord.conf')
+
+            self.config = configparser.RawConfigParser()
+            self.config.read(conf_path)
+
+            self.user = os.environ.get('USER')
+            self.group = grp.getgrgid(os.getgid()).gr_name
+        except Exception:
+            print(traceback.format_exc())
+            sys.exit(1)
+
+    def set_new_config(self):
+        try:
+            for section_name in self.config.sections():
+                for option_name in self.config.options(section_name):
+                    current_value = self.config.get(section_name, option_name)
+                    new_value = current_value
+
+                    # USER replace
+                    if ENV_USER in new_value:
+                        new_value = new_value.replace(ENV_USER, self.user)
+
+                    # GROUP replace
+                    if ENV_GROUP in new_value:
+                        new_value = new_value.replace(ENV_GROUP, self.group)
+
+                    # ENGN_ROOT replace
+                    for target in ENV_VAR_LIST:
+                        if target in new_value:
+                            new_value = new_value.replace(
+                                target, self.engn_root)
+
+                    if new_value != current_value:
+                        self.config.set(
+                            section_name, option_name, new_value)
+                    # print(new_value)
+        except Exception:
+            print(traceback.format_exc())
+            sys.exit(1)
+
+
+    def run(self):
+        try:
+            # Set new self.config
+            self.set_new_config()
+
+            # Make child_log_dir
+            child_log_dir = self.config['supervisord']['childlogdir']
+            if not os.path.exists(child_log_dir):
+                print(
+                    "[INFO] - Make child log dir: {}\n".format(child_log_dir)
+                )
+                os.makedirs(child_log_dir, exist_ok=True)
+
+            # Make new supervisord.conf
+            with open(self.re_conf_path, 'w') as f:
+                self.config.write(f)
+
+            # args = ['-c', self.re_conf_path, '-u', 'user', '-p', 'passowrd']
+            args = ['-c', self.re_conf_path]
+            args.extend(sys.argv[1:])
+
+            sys.exit(supervisor.supervisord.main(args))
+        except Exception:
+            print(traceback.format_exc())
+            sys.exit(1)
+
+
+########
+# main #
+########
+if __name__ == '__main__':
+    svctl = Svctl()
+    svctl.run()
+
