@@ -49,3 +49,53 @@
 2025-09-23 23:37:11,358 INFO spawned: 'print_time' with pid 1169365
 2025-09-23 23:37:12,356 INFO waiting for print_time to stop
 2025-09-23 23:37:12,356 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-23 23:51:29,880 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-23 23:51:29,880 INFO Set uid to user 1001 succeeded
+2025-09-23 23:51:29,880 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-23 23:51:29,886 INFO RPC interface 'supervisor' initialized
+2025-09-23 23:51:29,887 INFO RPC interface 'supervisor' initialized
+2025-09-23 23:51:29,887 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-23 23:51:29,888 INFO daemonizing the supervisord process
+2025-09-23 23:51:29,888 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-23 23:51:29,889 INFO supervisord started with pid 1182786
+2025-09-23 23:51:30,892 INFO spawned: 'print_time' with pid 1182805
+2025-09-23 23:51:31,254 INFO waiting for print_time to stop
+2025-09-23 23:51:31,254 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-23 23:58:04,310 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-23 23:58:04,310 INFO Set uid to user 1001 succeeded
+2025-09-23 23:58:04,310 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-23 23:58:04,315 INFO RPC interface 'supervisor' initialized
+2025-09-23 23:58:04,315 INFO RPC interface 'supervisor' initialized
+2025-09-23 23:58:04,315 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-23 23:58:04,316 INFO daemonizing the supervisord process
+2025-09-23 23:58:04,316 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-23 23:58:04,317 INFO supervisord started with pid 1189858
+2025-09-23 23:58:05,320 INFO spawned: 'print_time' with pid 1189877
+2025-09-23 23:58:06,858 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-23 23:58:08,573 INFO waiting for print_time to stop
+2025-09-23 23:58:08,574 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-24 00:04:11,404 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-24 00:04:11,404 INFO Set uid to user 1001 succeeded
+2025-09-24 00:04:11,404 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-24 00:04:11,410 INFO RPC interface 'supervisor' initialized
+2025-09-24 00:04:11,410 INFO RPC interface 'supervisor' initialized
+2025-09-24 00:04:11,410 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-24 00:04:11,411 INFO daemonizing the supervisord process
+2025-09-24 00:04:11,411 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-24 00:04:11,411 INFO supervisord started with pid 1195733
+2025-09-24 00:04:12,414 INFO spawned: 'print_time' with pid 1195752
+2025-09-24 00:04:13,429 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-24 00:04:14,220 INFO waiting for print_time to stop
+2025-09-24 00:04:14,221 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-24 00:08:43,183 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-24 00:08:43,183 INFO Set uid to user 1001 succeeded
+2025-09-24 00:08:43,183 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-24 00:08:43,187 INFO RPC interface 'supervisor' initialized
+2025-09-24 00:08:43,188 INFO RPC interface 'supervisor' initialized
+2025-09-24 00:08:43,188 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-24 00:08:43,189 INFO daemonizing the supervisord process
+2025-09-24 00:08:43,189 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-24 00:08:43,189 INFO supervisord started with pid 1200147
+2025-09-24 00:08:44,192 INFO spawned: 'print_time' with pid 1200166
+2025-09-24 00:08:44,814 INFO waiting for print_time to stop
+2025-09-24 00:08:44,814 WARN stopped: print_time (terminated by SIGTERM)
