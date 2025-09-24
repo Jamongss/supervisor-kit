@@ -1,0 +1,29 @@
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 24. (수) 21:06:43 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2380238
+=== Working Directory: /data/dev_area/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] Logging initialized - File: /data/dev_area/jamong/engn/logs/shutdown/shutdown.log.20250924, Level: INFO
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] Current user: minds
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] Current directory: /data/dev_area/jamong/engn
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] Target SVD path: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Main] Starting shutdown process for: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-24 21:06:43 [PID:2380238] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-24 21:06:44 [PID:2380238] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Main] All operations completed successfully
+[INFO] 2025-09-24 21:06:46 [PID:2380238] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 24. (수) 21:06:46 KST with exit code: 0 ===
+

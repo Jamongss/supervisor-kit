@@ -8,7 +8,7 @@ set -e  # 오류 발생시 스크립트 중단
 # =============================================================================
 
 # 로그 설정 (환경변수로 오버라이드 가능)
-LOG_DIR="${LOG_DIR:-$PWD/logs/kill_svd}"
+LOG_DIR="${LOG_DIR:-$PWD/logs/shutdown}"
 LOG_FILE="${LOG_FILE:-$LOG_DIR/shutdown.log.$(date '+%Y%m%d')}"
 LOG_LEVEL="${LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR
 LOG_TO_FILE="${LOG_TO_FILE:-true}"
@@ -97,36 +97,26 @@ SIGTERM_TIMEOUT=5
 graceful_shutdown() {
     log_info "[Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ..."
     
-    if ! command -v supervisorctl &> /dev/null; then
+    if ! command -v $PWD/svctl &> /dev/null; then
         log_warn "[Graceful_Shutdown] supervisorctl command not found ..."
         return 1
     fi
     
     log_debug "[Graceful_Shutdown] supervisorctl command found"
     
-    # supervisord 설정 파일 확인
-    local config_file=""
-    local config_path="$PWD/cfg/replace_supervisord.conf"
-    if [ -f "$config_path" ]; then
-        config_file="-c $config_path"
-        log_debug "[Graceful_Shutdown] Using config file: $config_path"
-    else
-        log_debug "[Graceful_Shutdown] No custom config file found, using default"
-    fi
-    
     # supervisord 상태 확인
-    if ! supervisorctl $config_file status &> /dev/null; then
+    if ! $PWD/svctl status &> /dev/null; then
         log_warn "[Graceful_Shutdown] Supervisord is not responding to status command"
         return 1
     fi
     
     log_info "[Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes..."
-    if supervisorctl $config_file stop all 2>/dev/null; then
+    if $PWD/svctl stop all 2>/dev/null; then
         log_info "[Graceful_Shutdown] All supervised processes stop command sent"
         sleep 2
         
         log_info "[Graceful_Shutdown] Sending shutdown command to supervisord..."
-        if supervisorctl $config_file shutdown 2>/dev/null; then
+        if $PWD/svctl shutdown 2>/dev/null; then
             log_info "[Graceful_Shutdown] Shutdown command sent successfully"
             
             # 정상 종료 완료 대기
@@ -234,7 +224,7 @@ cleanup() {
     fi
     
     # PID 파일들 제거
-    for pid_file in "/tmp/supervisord.pid" "$PWD/supervisord.pid"; do
+    for pid_file in "$PWD/run/supervisord.pid"; do
         if [ -f "$pid_file" ]; then
             if rm -f "$pid_file" 2>/dev/null; then
                 log_info "[CleanUp] Removed PID file: $(basename $pid_file)"
@@ -248,7 +238,7 @@ cleanup() {
     done
     
     # 소켓 파일들 제거
-    for sock_file in "/tmp/supervisor.sock" "$PWD/supervisor.sock"; do
+    for sock_file in "$PWD/run/supervisor.sock"; do
         if [ -S "$sock_file" ]; then
             if rm -f "$sock_file" 2>/dev/null; then
                 log_info "[CleanUp] Removed socket file: $(basename $sock_file)"
