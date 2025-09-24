@@ -112,3 +112,120 @@
 2025-09-24 21:06:36,832 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-09-24 21:06:43,792 INFO waiting for print_time to stop
 2025-09-24 21:06:43,793 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-24 21:18:39,823 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-24 21:18:39,823 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/test_api.conf" during parsing
+2025-09-24 21:18:39,823 INFO Set uid to user 1001 succeeded
+2025-09-24 21:18:39,823 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-24 21:18:39,828 INFO RPC interface 'supervisor' initialized
+2025-09-24 21:18:39,828 INFO RPC interface 'supervisor' initialized
+2025-09-24 21:18:39,828 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-24 21:18:39,829 INFO daemonizing the supervisord process
+2025-09-24 21:18:39,830 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-24 21:18:39,830 INFO supervisord started with pid 2391870
+2025-09-24 21:18:40,832 INFO spawned: 'print_time' with pid 2391890
+2025-09-24 21:18:40,833 INFO spawned: 'test_api' with pid 2391891
+2025-09-24 21:18:40,865 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:41,866 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-24 21:18:41,868 INFO spawned: 'test_api' with pid 2391913
+2025-09-24 21:18:41,899 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:44,723 INFO spawned: 'test_api' with pid 2391963
+2025-09-24 21:18:44,754 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:47,864 INFO spawned: 'test_api' with pid 2392021
+2025-09-24 21:18:47,894 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:48,896 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:18:54,033 INFO spawned: 'test_api' with pid 2392144
+2025-09-24 21:18:54,064 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:55,887 INFO spawned: 'test_api' with pid 2392166
+2025-09-24 21:18:55,919 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:18:58,720 INFO spawned: 'test_api' with pid 2392209
+2025-09-24 21:18:58,750 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:19:01,903 INFO spawned: 'test_api' with pid 2392272
+2025-09-24 21:19:01,936 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:19:02,938 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:20:05,281 INFO spawned: 'test_api' with pid 2393511
+2025-09-24 21:20:05,551 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:06,554 INFO spawned: 'test_api' with pid 2393526
+2025-09-24 21:20:06,817 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:09,087 INFO spawned: 'test_api' with pid 2393576
+2025-09-24 21:20:09,351 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:13,325 INFO spawned: 'test_api' with pid 2393644
+2025-09-24 21:20:13,590 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:14,101 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:20:35,854 INFO spawned: 'test_api' with pid 2394038
+2025-09-24 21:20:36,120 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:37,123 INFO spawned: 'test_api' with pid 2394067
+2025-09-24 21:20:37,385 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:40,172 INFO spawned: 'test_api' with pid 2394117
+2025-09-24 21:20:40,439 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:44,089 INFO spawned: 'test_api' with pid 2394185
+2025-09-24 21:20:44,352 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:45,353 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:20:48,610 INFO spawned: 'test_api' with pid 2394264
+2025-09-24 21:20:48,877 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:49,880 INFO spawned: 'test_api' with pid 2394279
+2025-09-24 21:20:50,149 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:52,418 INFO spawned: 'test_api' with pid 2394334
+2025-09-24 21:20:52,683 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:56,216 INFO spawned: 'test_api' with pid 2394409
+2025-09-24 21:20:56,488 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:20:57,489 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:21:28,736 INFO spawned: 'test_api' with pid 2395001
+2025-09-24 21:21:29,041 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:21:30,309 INFO spawned: 'test_api' with pid 2395041
+2025-09-24 21:21:30,610 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:21:33,317 INFO spawned: 'test_api' with pid 2395124
+2025-09-24 21:21:33,613 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:21:37,385 INFO spawned: 'test_api' with pid 2395196
+2025-09-24 21:21:37,688 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:21:38,330 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:53:04,629 INFO spawned: 'test_api' with pid 2439569
+2025-09-24 21:53:04,666 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:53:05,669 INFO spawned: 'test_api' with pid 2439584
+2025-09-24 21:53:05,705 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:53:08,440 INFO spawned: 'test_api' with pid 2439635
+2025-09-24 21:53:08,475 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:53:12,449 INFO spawned: 'test_api' with pid 2439703
+2025-09-24 21:53:12,486 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:53:13,487 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:55:04,055 INFO spawned: 'test_api' with pid 2442343
+2025-09-24 21:55:04,360 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:05,363 INFO spawned: 'test_api' with pid 2442358
+2025-09-24 21:55:05,601 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:07,773 INFO spawned: 'test_api' with pid 2442394
+2025-09-24 21:55:08,017 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:11,487 INFO spawned: 'test_api' with pid 2442462
+2025-09-24 21:55:11,729 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:12,730 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:55:22,282 INFO spawned: 'test_api' with pid 2442753
+2025-09-24 21:55:22,534 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:23,536 INFO spawned: 'test_api' with pid 2442768
+2025-09-24 21:55:23,786 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:26,521 INFO spawned: 'test_api' with pid 2442818
+2025-09-24 21:55:26,768 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:29,835 INFO spawned: 'test_api' with pid 2442872
+2025-09-24 21:55:30,084 WARN exited: test_api (exit status 1; not expected)
+2025-09-24 21:55:30,839 INFO gave up: test_api entered FATAL state, too many start retries too quickly
+2025-09-24 21:56:24,884 INFO spawned: 'test_api' with pid 2443868
+2025-09-24 21:56:26,141 INFO success: test_api entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-24 21:56:36,570 INFO waiting for print_time to stop
+2025-09-24 21:56:36,570 INFO waiting for test_api to stop
+2025-09-24 21:56:36,571 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-24 21:56:36,611 INFO stopped: test_api (exit status 0)
+2025-09-24 21:56:48,469 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-24 21:56:48,469 INFO Included extra file "/data/dev_area/jamong/engn/cfg/conf.d/test_api.conf" during parsing
+2025-09-24 21:56:48,469 INFO Set uid to user 1001 succeeded
+2025-09-24 21:56:48,469 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-24 21:56:48,473 INFO RPC interface 'supervisor' initialized
+2025-09-24 21:56:48,473 INFO RPC interface 'supervisor' initialized
+2025-09-24 21:56:48,473 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-24 21:56:48,474 INFO daemonizing the supervisord process
+2025-09-24 21:56:48,474 INFO set current directory: '/data/dev_area/jamong/engn'
+2025-09-24 21:56:48,475 INFO supervisord started with pid 2444336
+2025-09-24 21:56:49,477 INFO spawned: 'print_time' with pid 2444355
+2025-09-24 21:56:49,479 INFO spawned: 'test_api' with pid 2444356
+2025-09-24 21:56:50,685 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-24 21:56:50,685 INFO success: test_api entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-09-24 21:56:59,897 INFO waiting for print_time to stop
+2025-09-24 21:56:59,897 INFO waiting for test_api to stop
+2025-09-24 21:56:59,898 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-24 21:56:59,937 INFO stopped: test_api (exit status 0)

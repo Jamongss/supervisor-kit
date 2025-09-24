@@ -1,0 +1,220 @@
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 21, in <module>
+    from flask_restful import Api, reqparse, Resource
+ModuleNotFoundError: No module named 'flask_restful'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 21, in <module>
+    from flask_restful import Api, reqparse, Resource
+ModuleNotFoundError: No module named 'flask_restful'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 21, in <module>
+    from flask_restful import Api, reqparse, Resource
+ModuleNotFoundError: No module named 'flask_restful'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 21, in <module>
+    from flask_restful import Api, reqparse, Resource
+ModuleNotFoundError: No module named 'flask_restful'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 11, in <module>
+    from maum.brain.w2l.w2l_pb2_grpc import SpeechToTextStub
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2_grpc.py", line 9, in <module>
+    import w2l_pb2 as w2l__pb2
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2.py", line 35, in <module>
+    _descriptor.FieldDescriptor(
+  File "/home/minds/.local/lib/python3.12/site-packages/google/protobuf/descriptor.py", line 675, in __new__
+    _message.Message._CheckCalledFromGeneratedFile()
+TypeError: Descriptors cannot be created directly.
+If this call came from a _pb2.py file, your generated code is out of date and must be regenerated with protoc >= 3.19.0.
+If you cannot immediately regenerate your protos, some other possible workarounds are:
+ 1. Downgrade the protobuf package to 3.20.x or lower.
+ 2. Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).
+
+More information: https://developers.google.com/protocol-buffers/docs/news/2022-05-06#python-updates
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 11, in <module>
+    from maum.brain.w2l.w2l_pb2_grpc import SpeechToTextStub
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2_grpc.py", line 9, in <module>
+    import w2l_pb2 as w2l__pb2
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2.py", line 35, in <module>
+    _descriptor.FieldDescriptor(
+  File "/home/minds/.local/lib/python3.12/site-packages/google/protobuf/descriptor.py", line 675, in __new__
+    _message.Message._CheckCalledFromGeneratedFile()
+TypeError: Descriptors cannot be created directly.
+If this call came from a _pb2.py file, your generated code is out of date and must be regenerated with protoc >= 3.19.0.
+If you cannot immediately regenerate your protos, some other possible workarounds are:
+ 1. Downgrade the protobuf package to 3.20.x or lower.
+ 2. Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).
+
+More information: https://developers.google.com/protocol-buffers/docs/news/2022-05-06#python-updates
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 11, in <module>
+    from maum.brain.w2l.w2l_pb2_grpc import SpeechToTextStub
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2_grpc.py", line 9, in <module>
+    import w2l_pb2 as w2l__pb2
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2.py", line 35, in <module>
+    _descriptor.FieldDescriptor(
+  File "/home/minds/.local/lib/python3.12/site-packages/google/protobuf/descriptor.py", line 675, in __new__
+    _message.Message._CheckCalledFromGeneratedFile()
+TypeError: Descriptors cannot be created directly.
+If this call came from a _pb2.py file, your generated code is out of date and must be regenerated with protoc >= 3.19.0.
+If you cannot immediately regenerate your protos, some other possible workarounds are:
+ 1. Downgrade the protobuf package to 3.20.x or lower.
+ 2. Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).
+
+More information: https://developers.google.com/protocol-buffers/docs/news/2022-05-06#python-updates
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 11, in <module>
+    from maum.brain.w2l.w2l_pb2_grpc import SpeechToTextStub
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2_grpc.py", line 9, in <module>
+    import w2l_pb2 as w2l__pb2
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/maum/brain/w2l/w2l_pb2.py", line 35, in <module>
+    _descriptor.FieldDescriptor(
+  File "/home/minds/.local/lib/python3.12/site-packages/google/protobuf/descriptor.py", line 675, in __new__
+    _message.Message._CheckCalledFromGeneratedFile()
+TypeError: Descriptors cannot be created directly.
+If this call came from a _pb2.py file, your generated code is out of date and must be regenerated with protoc >= 3.19.0.
+If you cannot immediately regenerate your protos, some other possible workarounds are:
+ 1. Downgrade the protobuf package to 3.20.x or lower.
+ 2. Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).
+
+More information: https://developers.google.com/protocol-buffers/docs/news/2022-05-06#python-updates
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 16, in <module>
+    import paramiko
+ModuleNotFoundError: No module named 'paramiko'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 20, in <module>
+    from flask_cors import CORS
+ModuleNotFoundError: No module named 'flask_cors'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+Traceback (most recent call last):
+  File "/data/dev_area/jamong/engn/code/appl_py3/col_rest_api.py", line 24, in <module>
+    from client import W2lClient, read_pcm
+  File "/DATA/dev_area/jamong/engn/code/appl_py3/client.py", line 8, in <module>
+    import grpc
+ModuleNotFoundError: No module named 'grpc'
+2025-09-24 21:56:25.126 - INFO[305] - [START] Collector REST API process start
+ * Serving Flask app 'col_rest_api'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8788
+ * Running on http://10.50.3.34:8788
+[33mPress CTRL+C to quit[0m
+서비스 종료 시그널 수신, 종료 중 ...
+종료 완료
+2025-09-24 21:56:49.713 - INFO[305] - [START] Collector REST API process start
+ * Serving Flask app 'col_rest_api'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8788
+ * Running on http://10.50.3.34:8788
+[33mPress CTRL+C to quit[0m
+서비스 종료 시그널 수신, 종료 중 ...
+종료 완료
