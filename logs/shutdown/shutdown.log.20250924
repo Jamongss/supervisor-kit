@@ -85,3 +85,29 @@
 [INFO] 2025-09-24 21:57:03 [PID:2444535] - [Main] Script execution completed successfully
 === Script ended at 2025. 09. 24. (수) 21:57:03 KST with exit code: 0 ===
 
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 24. (수) 21:59:19 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2446933
+=== Working Directory: /data/dev_area/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] Logging initialized - File: /data/dev_area/jamong/engn/logs/shutdown/shutdown.log.20250924, Level: INFO
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] Current user: minds
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] Current directory: /data/dev_area/jamong/engn
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] Target SVD path: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Main] Starting shutdown process for: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-24 21:59:19 [PID:2446933] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Main] All operations completed successfully
+[INFO] 2025-09-24 21:59:19 [PID:2446933] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 24. (수) 21:59:19 KST with exit code: 0 ===
+
