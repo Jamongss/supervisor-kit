@@ -1,0 +1,55 @@
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 26. (금) 21:07:07 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 1035196
+=== Working Directory: /data/dev_area/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] Logging initialized - File: /data/dev_area/jamong/engn/logs/shutdown/shutdown.log.20250926, Level: INFO
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] Current user: minds
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] Current directory: /data/dev_area/jamong/engn
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] Target SVD path: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Main] Starting shutdown process for: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-26 21:07:07 [PID:1035196] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-26 21:07:08 [PID:1035196] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [Main] All operations completed successfully
+[INFO] 2025-09-26 21:07:08 [PID:1035196] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 26. (금) 21:07:08 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 26. (금) 21:09:44 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 1037622
+=== Working Directory: /data/dev_area/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] Logging initialized - File: /data/dev_area/jamong/engn/logs/shutdown/shutdown.log.20250926, Level: INFO
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] Current user: minds
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] Current directory: /data/dev_area/jamong/engn
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] Target SVD path: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Main] Starting shutdown process for: /data/dev_area/jamong/engn/svd
+[INFO] 2025-09-26 21:09:44 [PID:1037622] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-26 21:09:45 [PID:1037622] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-26 21:09:46 [PID:1037622] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Main] All operations completed successfully
+[INFO] 2025-09-26 21:09:48 [PID:1037622] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 26. (금) 21:09:48 KST with exit code: 0 ===
+

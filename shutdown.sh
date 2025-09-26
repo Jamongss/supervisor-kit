@@ -105,7 +105,8 @@ graceful_shutdown() {
     log_debug "[Graceful_Shutdown] supervisorctl command found"
     
     # supervisord 상태 확인
-    if ! $PWD/svctl status &> /dev/null; then
+    # if ! $PWD/svctl status &> /dev/null; then
+    if ! $PWD/svctl status; then
         log_warn "[Graceful_Shutdown] Supervisord is not responding to status command"
         return 1
     fi
