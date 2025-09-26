@@ -267,3 +267,277 @@
 [INFO] 2025-09-27 01:11:09 [PID:1259185] - [Main] Script execution completed successfully
 === Script ended at 2025. 09. 27. (토) 01:11:09 KST with exit code: 0 ===
 
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 01:54:55 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 55615
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] Current user: jamong
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 01:54:55 [PID:55615] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [CleanUp] Removed PID file: supervisord.pid
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [CleanUp] Removed socket file: supervisor.sock
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [CleanUp] Cleanup completed: 3 files removed
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Main] All operations completed successfully
+[INFO] 2025-09-27 01:54:55 [PID:55615] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 01:54:55 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:13:59 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 90332
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:13:59 [PID:90332] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:13:59 [PID:90332] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:13:59 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:14:12 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 90549
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:14:12 [PID:90549] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:14:12 [PID:90549] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:14:12 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:38:41 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 27510
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-27 02:38:41 [PID:27510] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-27 02:38:42 [PID:27510] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:38:44 [PID:27510] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:38:44 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:39:48 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 27947
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-27 02:39:48 [PID:27947] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-27 02:39:49 [PID:27947] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:39:51 [PID:27947] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:39:51 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:47:02 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 29747
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:47:02 [PID:29747] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:47:02 [PID:29747] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:47:03 [PID:29747] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:47:03 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:47:09 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 29881
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:47:09 [PID:29881] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:47:09 [PID:29881] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:47:09 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:47:13 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 29989
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:47:13 [PID:29989] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:47:13 [PID:29989] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-27 02:47:14 [PID:29989] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-27 02:47:15 [PID:29989] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:47:17 [PID:29989] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:47:17 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:55:01 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 30755
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:55:01 [PID:30755] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:55:01 [PID:30755] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:55:01 KST 2025 with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at Sat Sep 27 02:57:10 KST 2025 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 30953
+=== Working Directory: /Users/jamong/engn
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] Logging initialized - File: /Users/jamong/engn/logs/shutdown/shutdown.log.20250927, Level: INFO
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] Current user: jamong
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] Current directory: /Users/jamong/engn
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] Target SVD path: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Main] Starting shutdown process for: /Users/jamong/engn/svd
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-27 02:57:10 [PID:30953] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Main] All operations completed successfully
+[INFO] 2025-09-27 02:57:10 [PID:30953] - [Main] Script execution completed successfully
+=== Script ended at Sat Sep 27 02:57:10 KST 2025 with exit code: 0 ===
+

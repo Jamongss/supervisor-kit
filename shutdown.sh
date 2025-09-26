@@ -1,5 +1,22 @@
-#!/bin/bash 
-# 현재 디렉토리 기준으로 svd 실행 중인 python 프로세스 종료 
+#!/bin/sh
+# 이미 재실행되었는지 체크하는 마커
+if [ -z "${_REEXEC_DONE:-}" ]; then
+  # 현재 실행 중인 셸 이름(ps 기반)
+  CURRENT_SHELL=$(basename "$(ps -p $$ -o comm=)")
+
+  # 원하는 쉘(사용자 로그인 쉘) — $SHELL 대신 필요하면 다른 값을 넣어도 됨
+  TARGET_SHELL=$(basename "$SHELL")
+
+  # 같지 않으면 TARGET_SHELL으로 재실행
+  if [ "$CURRENT_SHELL" != "$TARGET_SHELL" ]; then
+    export _REEXEC_DONE=1
+    echo "Re-executing script with $TARGET_SHELL..."
+    exec "$SHELL" "$0" "$@"
+    # exec가 성공하면 아래로 오지 않음
+  fi
+fi
+
+# 현재 디렉토리 기준으로 svd 실행 중인 python 프로세스 종료
 
 set -e  # 오류 발생시 스크립트 중단
 
@@ -32,26 +49,26 @@ log_message() {
     local message="$2"
     local current_level_num=${LOG_LEVELS[$LOG_LEVEL]}
     local message_level_num=${LOG_LEVELS[$level]}
-    
+
     # 로그 레벨 체크 (설정된 레벨보다 낮으면 출력 안함)
     if [ ${message_level_num:-1} -lt ${current_level_num:-1} ]; then
         return 0
     fi
-    
+
     local timestamp="$(date '+%Y-%m-%d %H:%M:%S')"
     local pid="$$"
     local log_entry="[$level] $timestamp [PID:$pid] - $message"
-    
+
     # 콘솔 출력 (색상 적용)
     if [ "$LOG_TO_CONSOLE" = "true" ]; then
         case $level in
             ERROR) echo -e "\033[31m$log_entry\033[0m" ;;  # 빨간색
-            WARN)  echo -e "\033[33m$log_entry\033[0m" ;;  # 노란색  
+            WARN)  echo -e "\033[33m$log_entry\033[0m" ;;  # 노란색
             INFO)  echo -e "\033[32m$log_entry\033[0m" ;;  # 초록색
             DEBUG) echo -e "\033[36m$log_entry\033[0m" ;;  # 청록색
         esac
     fi
-    
+
     # 파일 저장
     if [ "$LOG_TO_FILE" = "true" ]; then
         echo "$log_entry" >> "$LOG_FILE"
@@ -67,7 +84,7 @@ log_error() { log_message "ERROR" "$1"; }
 # 스크립트 시작 로그 및 환경 정보
 init_logging() {
     cleanup_old_logs
-    
+
     if [ "$LOG_TO_FILE" = "true" ]; then
         echo "===================================================================================" >> "$LOG_FILE"
         echo "=== SVD Shutdown Script Started at $(date) ===" >> "$LOG_FILE"
@@ -78,7 +95,7 @@ init_logging() {
         echo "=== Log Level: $LOG_LEVEL" >> "$LOG_FILE"
         echo "===================================================================================" >> "$LOG_FILE"
     fi
-    
+
     log_info "[Init] Logging initialized - File: $LOG_FILE, Level: $LOG_LEVEL"
     log_debug "[Init] Environment: USER=$(whoami), PWD=$(pwd), SHELL=$SHELL"
 }
@@ -88,38 +105,38 @@ init_logging() {
 # =============================================================================
 
 # 설정 변수
-PWD="$(pwd)" 
-SVD_PATH="$(pwd)/svd" 
+PWD="$(pwd)"
+SVD_PATH="$(pwd)/svd"
 SUPERVISORCTL_TIMEOUT=10
 SIGTERM_TIMEOUT=5
 
 # 1단계: supervisorctl을 통한 정상 종료
 graceful_shutdown() {
     log_info "[Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ..."
-    
+
     if ! command -v $PWD/svctl &> /dev/null; then
         log_warn "[Graceful_Shutdown] supervisorctl command not found ..."
         return 1
     fi
-    
+
     log_debug "[Graceful_Shutdown] supervisorctl command found"
-    
+
     # supervisord 상태 확인
     # if ! $PWD/svctl status &> /dev/null; then
     if ! $PWD/svctl status; then
         log_warn "[Graceful_Shutdown] Supervisord is not responding to status command"
         return 1
     fi
-    
+
     log_info "[Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes..."
     if $PWD/svctl stop all 2>/dev/null; then
         log_info "[Graceful_Shutdown] All supervised processes stop command sent"
         sleep 2
-        
+
         log_info "[Graceful_Shutdown] Sending shutdown command to supervisord..."
         if $PWD/svctl shutdown 2>/dev/null; then
             log_info "[Graceful_Shutdown] Shutdown command sent successfully"
-            
+
             # 정상 종료 완료 대기
             for i in $(seq 1 $SUPERVISORCTL_TIMEOUT); do
                 if ! ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep &> /dev/null; then
@@ -129,7 +146,7 @@ graceful_shutdown() {
                 log_debug "[Graceful_Shutdown] Waiting for shutdown... ($i/$SUPERVISORCTL_TIMEOUT)"
                 sleep 1
             done
-            
+
             log_warn "[Graceful_Shutdown] Graceful shutdown timeout after ${SUPERVISORCTL_TIMEOUT}s"
             return 1
         else
@@ -145,25 +162,25 @@ graceful_shutdown() {
 # 2단계: 수동 프로세스 종료
 manual_termination() {
     log_info "[Manual_Termination] Attempting manual process termination"
-    
+
     local pids=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
-    
-    if [ -z "$pids" ]; then 
+
+    if [ -z "$pids" ]; then
         log_info "[Manual_Termination] No python svd processes found"
         return 0
-    fi 
-    
+    fi
+
     log_info "[Manual_Termination] Found python svd processes. PIDs: $pids"
     log_debug "[Manual_Termination] Process details:"
     ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | while read line; do
         log_debug "[Manual_Termination]  $line"
     done
-    
+
     # SIGTERM 시도
     log_info "[Manual_Termination] Sending SIGTERM to processes: $pids"
     if kill $pids 2>/dev/null; then
         log_debug "[Manual_Termination] SIGTERM sent successfully"
-        
+
         # SIGTERM 대기
         for i in $(seq 1 $SIGTERM_TIMEOUT); do
             local remaining=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
@@ -174,7 +191,7 @@ manual_termination() {
             log_debug "[Manual_Termination] Waiting for SIGTERM termination... ($i/$SIGTERM_TIMEOUT)"
             sleep 1
         done
-        
+
         # SIGKILL 시도
         local remaining=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
         if [ -n "$remaining" ]; then
@@ -182,7 +199,7 @@ manual_termination() {
             if kill -9 $remaining 2>/dev/null; then
                 log_info "[Manual_Termination] SIGKILL sent to remaining processes"
                 sleep 2
-                
+
                 # 최종 확인
                 local final_check=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
                 if [ -n "$final_check" ]; then
@@ -200,7 +217,7 @@ manual_termination() {
         log_error "[Manual_Termination] Failed to send SIGTERM to processes"
         return 1
     fi
-    
+
     log_info "[Manual_Termination] Manual termination completed successfully"
     return 0
 }
@@ -208,9 +225,9 @@ manual_termination() {
 # 3단계: 정리 작업
 cleanup() {
     log_info "[CleanUp] Performing cleanup operations"
-    
+
     local cleaned_files=0
-    
+
     # 설정 파일 제거
     local conf_file="$PWD/cfg/replace_supervisord.conf"
     if [ -f "$conf_file" ]; then
@@ -223,7 +240,7 @@ cleanup() {
     else
         log_debug "[CleanUp] replace_supervisord.conf not found"
     fi
-    
+
     # PID 파일들 제거
     for pid_file in "$PWD/run/supervisord.pid"; do
         if [ -f "$pid_file" ]; then
@@ -237,7 +254,7 @@ cleanup() {
             log_debug "[CleanUp] PID file not found: $pid_file"
         fi
     done
-    
+
     # 소켓 파일들 제거
     for sock_file in "$PWD/run/supervisor.sock"; do
         if [ -S "$sock_file" ]; then
@@ -251,7 +268,7 @@ cleanup() {
             log_debug "[CleanUp] Socket file not found: $sock_file"
         fi
     done
-    
+
     log_info "[CleanUp] Cleanup completed: $cleaned_files files removed"
 }
 
@@ -259,7 +276,7 @@ cleanup() {
 cleanup_on_exit() {
     local exit_code=$?
     log_debug "[CleanUp] Script exiting with code: $exit_code"
-    
+
     if [ "$LOG_TO_FILE" = "true" ]; then
         echo "=== Script ended at $(date) with exit code: $exit_code ===" >> "$LOG_FILE"
         echo "" >> "$LOG_FILE"
@@ -269,10 +286,10 @@ cleanup_on_exit() {
 # 메인 실행 함수
 main() {
     log_info "[Main] Starting shutdown process for: $SVD_PATH"
-    
+
     local shutdown_method=""
     local success=false
-    
+
     # 우선순위 순서로 종료 시도
     if graceful_shutdown; then
         shutdown_method="graceful (supervisorctl)"
@@ -284,7 +301,7 @@ main() {
         log_error "[Main] All shutdown methods failed"
         return 1
     fi
-    
+
     if $success; then
         log_info "[Main] Shutdown successful using: $shutdown_method"
         cleanup
