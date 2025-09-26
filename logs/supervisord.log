@@ -391,3 +391,15 @@
 2025-09-27 02:57:50,952 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-09-27 02:57:58,448 INFO waiting for print_time to stop
 2025-09-27 02:57:58,449 WARN stopped: print_time (terminated by SIGTERM)
+2025-09-27 03:11:29,918 INFO Included extra file "/Users/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-09-27 03:11:29,918 INFO Set uid to user 501 succeeded
+2025-09-27 03:11:29,918 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-09-27 03:11:30,138 INFO RPC interface 'supervisor' initialized
+2025-09-27 03:11:30,143 INFO RPC interface 'supervisor' initialized
+2025-09-27 03:11:30,143 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-09-27 03:11:30,148 INFO daemonizing the supervisord process
+2025-09-27 03:11:30,149 INFO set current directory: '/Users/jamong/engn'
+2025-09-27 03:11:30,150 INFO supervisord started with pid 32182
+2025-09-27 03:11:31,155 INFO spawned: 'print_time' with pid 32211
+2025-09-27 03:11:31,768 INFO waiting for print_time to stop
+2025-09-27 03:11:31,768 WARN stopped: print_time (terminated by SIGTERM)

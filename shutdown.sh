@@ -1,19 +1,20 @@
 #!/bin/sh
+
 # 이미 재실행되었는지 체크하는 마커
 if [ -z "${_REEXEC_DONE:-}" ]; then
-  # 현재 실행 중인 셸 이름(ps 기반)
-  CURRENT_SHELL=$(basename "$(ps -p $$ -o comm=)")
+    # 현재 실행 중인 쉘 이름(ps 기반)
+    CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/^-*//')  # 접두사 제거
 
-  # 원하는 쉘(사용자 로그인 쉘) — $SHELL 대신 필요하면 다른 값을 넣어도 됨
-  TARGET_SHELL=$(basename "$SHELL")
+    # 사용자의 로그인 쉘 이름
+    TARGET_SHELL=$(basename "$SHELL")
 
-  # 같지 않으면 TARGET_SHELL으로 재실행
-  if [ "$CURRENT_SHELL" != "$TARGET_SHELL" ]; then
-    export _REEXEC_DONE=1
-    echo "Re-executing script with $TARGET_SHELL..."
-    exec "$SHELL" "$0" "$@"
-    # exec가 성공하면 아래로 오지 않음
-  fi
+    # 같지 않으면 재실행
+    if [ "$CURRENT_SHELL" != "$TARGET_SHELL" ]; then
+        export _REEXEC_DONE=1
+        echo "Re-executing script with $TARGET_SHELL..."
+        exec "$SHELL" "$0" "$@"
+        # exec 성공하면 아래로 오지 않음
+    fi
 fi
 
 # 현재 디렉토리 기준으로 svd 실행 중인 python 프로세스 종료
