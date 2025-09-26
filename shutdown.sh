@@ -96,6 +96,7 @@ init_logging() {
         echo "===================================================================================" >> "$LOG_FILE"
     fi
 
+    log_info "[Init] SHELL: $SHELL"
     log_info "[Init] Logging initialized - File: $LOG_FILE, Level: $LOG_LEVEL"
     log_debug "[Init] Environment: USER=$(whoami), PWD=$(pwd), SHELL=$SHELL"
 }
