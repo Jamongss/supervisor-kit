@@ -124,8 +124,14 @@ graceful_shutdown() {
     log_debug "[Graceful_Shutdown] supervisorctl command found"
 
     # supervisord 상태 확인
-    # if ! $PWD/svctl status &> /dev/null; then
-    if ! $PWD/svctl status; then
+    $PWD/svctl status &> /dev/null 2>&1
+    exit_code=$?
+
+    log_warn "[Graceful_Shutdown] exit_code: $exit_code"
+    if [ $exit_code -eq 0 ] || [ $exit_code -eq 3 ]; then
+        # 정상 - Graceful_Shutdown 진행
+        :
+    else
         log_warn "[Graceful_Shutdown] Supervisord is not responding to status command"
         return 1
     fi
