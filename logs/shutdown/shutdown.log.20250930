@@ -57,3 +57,260 @@
 [INFO] 2025-09-30 19:48:05 [PID:2595184] - [Main] Script execution completed successfully
 === Script ended at 2025. 09. 30. (화) 19:48:05 KST with exit code: 0 ===
 
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 19:56:15 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2603103
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] Current user: minds
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-30 19:56:15 [PID:2603103] - [Graceful_Shutdown] exit_code: 2
+[WARN] 2025-09-30 19:56:15 [PID:2603103] - [Graceful_Shutdown] Supervisord is not responding to status command
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Manual_Termination] No python svd processes found
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Main] All operations completed successfully
+[INFO] 2025-09-30 19:56:15 [PID:2603103] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 19:56:15 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 19:56:18 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2603200
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] Current user: minds
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-30 19:56:18 [PID:2603200] - [Graceful_Shutdown] exit_code: 0
+[INFO] 2025-09-30 19:56:18 [PID:2603200] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 19:56:19 [PID:2603200] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Main] All operations completed successfully
+[INFO] 2025-09-30 19:56:21 [PID:2603200] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 19:56:21 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 19:57:25 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2604276
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] Current user: minds
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-30 19:57:25 [PID:2604276] - [Graceful_Shutdown] exit_code: 3
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 19:57:25 [PID:2604276] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Main] All operations completed successfully
+[INFO] 2025-09-30 19:57:27 [PID:2604276] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 19:57:27 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 19:58:42 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2605527
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] Current user: minds
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-30 19:58:42 [PID:2605527] - [Graceful_Shutdown] exit_code: 0
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 19:58:42 [PID:2605527] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Main] All operations completed successfully
+[INFO] 2025-09-30 19:58:44 [PID:2605527] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 19:58:44 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 19:58:56 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2605837
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] Current user: minds
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-09-30 19:58:56 [PID:2605837] - [Graceful_Shutdown] exit_code: 3
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 19:58:56 [PID:2605837] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Main] All operations completed successfully
+[INFO] 2025-09-30 19:58:58 [PID:2605837] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 19:58:58 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 20:16:35 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2622424
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] Current user: minds
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:35 [PID:2622424] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-30 20:16:36 [PID:2622424] - [Graceful_Shutdown] svctl status
+===== svctl status raw outpu =====
+print_time                       BACKOFF   Exited too quickly (process log may have details)
+==================================
+[WARN] 2025-09-30 20:16:36 [PID:2622424] - [Graceful_Shutdown] exit_code: 0
+[INFO] 2025-09-30 20:16:36 [PID:2622424] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 20:16:36 [PID:2622424] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Main] All operations completed successfully
+[INFO] 2025-09-30 20:16:38 [PID:2622424] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 20:16:38 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 20:16:42 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2622636
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] Current user: minds
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:42 [PID:2622636] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-30 20:16:43 [PID:2622636] - [Graceful_Shutdown] svctl status
+===== svctl status raw outpu =====
+print_time                       BACKOFF   Exited too quickly (process log may have details)
+==================================
+[WARN] 2025-09-30 20:16:43 [PID:2622636] - [Graceful_Shutdown] exit_code: 0
+[INFO] 2025-09-30 20:16:43 [PID:2622636] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 20:16:43 [PID:2622636] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Main] All operations completed successfully
+[INFO] 2025-09-30 20:16:45 [PID:2622636] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 20:16:45 KST with exit code: 0 ===
+
+===================================================================================
+=== SVD Shutdown Script Started at 2025. 09. 30. (화) 20:16:57 KST ===
+=== Script: ./shutdown.sh
+=== User: minds
+=== PID: 2622949
+=== Working Directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] SHELL: /bin/bash
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] Logging initialized - File: /data/dev_area/jamong/manage_pack/supervisor-kit/logs/shutdown/shutdown.log.20250930, Level: INFO
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] SVD Shutdown Script v2.0
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] Current user: minds
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] Current directory: /data/dev_area/jamong/manage_pack/supervisor-kit
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] Target SVD path: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Main] Starting shutdown process for: /data/dev_area/jamong/manage_pack/supervisor-kit/svd
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Graceful_Shutdown] svctl status
+===== svctl status raw outpu =====
+print_time                       RUNNING   pid 2622908, uptime 0:00:02
+==================================
+[WARN] 2025-09-30 20:16:57 [PID:2622949] - [Graceful_Shutdown] exit_code: 0
+[INFO] 2025-09-30 20:16:57 [PID:2622949] - [Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes...
+[INFO] 2025-09-30 20:16:59 [PID:2622949] - [Graceful_Shutdown] All supervised processes stop command sent
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Graceful_Shutdown] Sending shutdown command to supervisord...
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Graceful_Shutdown] Shutdown command sent successfully
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Graceful_Shutdown] Graceful shutdown completed successfully
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Main] Shutdown successful using: graceful (supervisorctl)
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [CleanUp] Performing cleanup operations
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [CleanUp] Removed replace_supervisord.conf
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [CleanUp] Cleanup completed: 1 files removed
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Main] All operations completed successfully
+[INFO] 2025-09-30 20:17:01 [PID:2622949] - [Main] Script execution completed successfully
+=== Script ended at 2025. 09. 30. (화) 20:17:01 KST with exit code: 0 ===
+

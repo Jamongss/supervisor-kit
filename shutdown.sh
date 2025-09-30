@@ -127,6 +127,13 @@ graceful_shutdown() {
     $PWD/svctl status &> /dev/null 2>&1
     exit_code=$?
 
+    log_info "[Graceful_Shutdown] svctl status"
+    {
+        echo "===== svctl status raw outpu ====="
+        $PWD/svctl status
+        echo "=================================="
+    } | tee -a "$LOG_FILE"
+
     log_warn "[Graceful_Shutdown] exit_code: $exit_code"
     if [ $exit_code -eq 0 ] || [ $exit_code -eq 3 ]; then
         # 정상 - Graceful_Shutdown 진행
