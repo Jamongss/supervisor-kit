@@ -1,9 +1,12 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai"
-__date__ = "creation: 2023-03-03, modification: 0000-00-00"
+__author__ = "Jamongss"
+__date__ = "2023-03-03"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-10-01"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -14,92 +17,114 @@ import time
 import logging
 import logging.handlers
 
+# ANSI 컬러 + 굵기
+class LogColors(object):
+    RESET = "\033[0m"
+    COLORS = {
+        'DEBUG': "\033[36m",  # 청록
+        'INFO': "\033[32m",   # 초록
+        'WARNING': "\033[33m",# 노랑
+        'ERROR': "\033[31m",  # 빨강
+        'CRITICAL': "\033[41m",# 빨강 배경
+    }
 
-#######
-# def #
-#######
+class ColorFormatter(logging.Formatter):
+    def format(self, record):
+        msg = logging.Formatter.format(self, record)
+        color = LogColors.COLORS.get(record.levelname, "")
+        return "{color}{msg}{reset}".format(
+            color=color,
+            msg=msg,
+            reset=LogColors.RESET
+        )
+
 def get_timed_rotating_logger(**kwargs):
     """
-    Get timed rotating logger
-    :param      kwargs:         Arguments
-    :return:                    Logger
+    Python2/3 호환: TimedRotatingFileHandler + 콘솔 컬러 로그
+    kwargs:
+        logger_name: str
+        log_dir_path: str
+        log_file_name: str
+        log_level: str ('debug','info','warning','error','critical')
+        backup_count: int
     """
-    # create logger
-    if not os.path.exists(kwargs.get('log_dir_path')):
+    log_dir = kwargs.get('log_dir_path')
+    if not os.path.exists(log_dir):
         try:
-            os.makedirs(kwargs.get('log_dir_path'))
+            os.makedirs(log_dir)
         except Exception:
             time.sleep(1)
-            os.makedirs(kwargs.get('log_dir_path'))
-            pass
+            os.makedirs(log_dir)
+
     logger = logging.getLogger(kwargs.get('logger_name'))
-    if kwargs.get('log_level').lower() == 'info':
-        log_level = 20
-    elif kwargs.get('log_level').lower() == 'warning':
-        log_level = 30
-    elif kwargs.get('log_level').lower() == 'error':
-        log_level = 40
-    elif kwargs.get('log_level').lower() == 'critical':
-        log_level = 50
-    else:
-        log_level = 10
+
+    # 로그 레벨 매핑
+    level_str = kwargs.get('log_level', 'debug').lower()
+    level_map = {
+        'debug': logging.DEBUG,
+        'info': logging.INFO,
+        'warning': logging.WARNING,
+        'error': logging.ERROR,
+        'critical': logging.CRITICAL
+    }
+    log_level = level_map.get(level_str, logging.DEBUG)
     logger.setLevel(log_level)
-    ch = logging.handlers.TimedRotatingFileHandler(
-        os.path.join(kwargs.get('log_dir_path'), kwargs.get('log_file_name')),
+
+    # FileHandler
+    file_handler = logging.handlers.TimedRotatingFileHandler(
+        os.path.join(log_dir, kwargs.get('log_file_name')),
         when='midnight',
         interval=1,
-        backupCount=kwargs.get('backup_count'),
-        encoding=None,
-        delay=False,
-        utc=False
+        backupCount=kwargs.get('backup_count', 7)
     )
-    ch.setLevel(log_level)
-    # Create formatter
-    formatter = logging.Formatter(
-        fmt='%(asctime)s.%(msecs)03d - %(levelname)s[%(lineno)d] - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+    file_handler.setLevel(log_level)
+    file_formatter = logging.Formatter(
+        '%(asctime)s.%(msecs)03d - %(levelname)s[%(lineno)d] - %(message)s',
+        '%Y-%m-%d %H:%M:%S'
     )
-    # Add formatter to ch
-    ch.setFormatter(formatter)
-    # Add ch to logger
-    logger.addHandler(ch)
-    st = logging.StreamHandler(sys.stdout)
-    st.setFormatter(formatter)
-    st.setLevel(logging.DEBUG)
-    logger.addHandler(st)
+    file_handler.setFormatter(file_formatter)
+    logger.addHandler(file_handler)
+
+    # StreamHandler (컬러 적용)
+    stream_handler = logging.StreamHandler(sys.stdout)
+    stream_handler.setLevel(logging.DEBUG)
+    stream_formatter = ColorFormatter(
+        '%(asctime)s.%(msecs)03d - %(levelname)s[%(lineno)d] - %(message)s',
+        '%Y-%m-%d %H:%M:%S'
+    )
+    stream_handler.setFormatter(stream_formatter)
+    logger.addHandler(stream_handler)
+
     return logger
 
 
 def set_logger(**kwargs):
-    """
-    This is a set logger
-    :param      kwargs:         Arguments
-    :return:                    Logger
-    """
-    # create logger
-    if not os.path.exists(kwargs.get('log_dir_path')):
-        os.makedirs(kwargs.get('log_dir_path'))
+    log_dir = kwargs.get('log_dir_path')
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
     logger = logging.getLogger(kwargs.get('logger_name'))
-    if kwargs.get('log_level').lower() == 'info':
-        log_level = 20
-    elif kwargs.get('log_level').lower() == 'warning':
-        log_level = 30
-    elif kwargs.get('log_level').lower() == 'error':
-        log_level = 40
-    elif kwargs.get('log_level').lower() == 'critical':
-        log_level = 50
-    else:
-        log_level = 10
+
+    level_str = kwargs.get('log_level', 'debug').lower()
+    level_map = {
+        'debug': logging.DEBUG,
+        'info': logging.INFO,
+        'warning': logging.WARNING,
+        'error': logging.ERROR,
+        'critical': logging.CRITICAL
+    }
+    log_level = level_map.get(level_str, logging.DEBUG)
     logger.setLevel(log_level)
-    # Create a file handler
-    log_file_path = os.path.join(kwargs.get('log_dir_path'), kwargs.get('log_file_name'))
-    handler = logging.FileHandler(log_file_path)
-    handler.setLevel(log_level)
-    # Create a logging format
+
+    log_file_path = os.path.join(log_dir, kwargs.get('log_file_name'))
+    file_handler = logging.FileHandler(log_file_path)
+    file_handler.setLevel(log_level)
     formatter = logging.Formatter(
-        fmt='%(asctime)s - %(levelname)s[%(lineno)d] - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-    handler.setFormatter(formatter)
-    # Add the handlers to the logger
-    logger.addHandler(handler)
+        '%(asctime)s - %(levelname)s[%(lineno)d] - %(message)s',
+        '%Y-%m-%d %H:%M:%S'
+    )
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
     return logger
 
