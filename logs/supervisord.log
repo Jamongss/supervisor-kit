@@ -549,3 +549,29 @@
 2025-09-30 20:16:57,534 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-09-30 20:16:58,023 INFO waiting for print_time to stop
 2025-09-30 20:16:58,023 WARN stopped: print_time (terminated by SIGTERM)
+2025-10-01 22:26:35,546 INFO Included extra file "/home/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-10-01 22:26:35,546 INFO Included extra file "/home/jamong/engn/cfg/conf.d/test_string.conf" during parsing
+2025-10-01 22:26:35,546 INFO Set uid to user 1000 succeeded
+2025-10-01 22:26:35,546 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-10-01 22:26:35,552 INFO RPC interface 'supervisor' initialized
+2025-10-01 22:26:35,552 INFO RPC interface 'supervisor' initialized
+2025-10-01 22:26:35,552 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-01 22:26:35,552 INFO daemonizing the supervisord process
+2025-10-01 22:26:35,553 INFO set current directory: '/home/jamong/engn'
+2025-10-01 22:26:35,553 INFO supervisord started with pid 530
+2025-10-01 22:26:36,554 INFO spawned: 'print_time' with pid 531
+2025-10-01 22:26:37,666 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-01 22:26:39,691 INFO waiting for print_time to stop
+2025-10-01 22:26:39,691 WARN stopped: print_time (terminated by SIGTERM)
+2025-10-01 23:36:56,772 INFO Included extra file "/home/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-10-01 23:36:56,773 INFO Included extra file "/home/jamong/engn/cfg/conf.d/test_string.conf" during parsing
+2025-10-01 23:36:56,773 INFO Set uid to user 1000 succeeded
+2025-10-01 23:36:56,773 INFO Increased RLIMIT_NOFILE limit to 4096
+2025-10-01 23:36:56,777 INFO RPC interface 'supervisor' initialized
+2025-10-01 23:36:56,778 INFO RPC interface 'supervisor' initialized
+2025-10-01 23:36:56,778 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-01 23:36:56,778 INFO daemonizing the supervisord process
+2025-10-01 23:36:56,778 INFO set current directory: '/home/jamong/engn'
+2025-10-01 23:36:56,778 INFO supervisord started with pid 760
+2025-10-01 23:36:57,359 INFO spawned: 'print_time' with pid 762
+2025-10-01 23:36:58,368 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
