@@ -28,7 +28,7 @@ set -e  # 오류 발생시 스크립트 중단
 # 로그 설정 (환경변수로 오버라이드 가능)
 LOG_DIR="${LOG_DIR:-$PWD/logs/shutdown}"
 LOG_FILE="${LOG_FILE:-$LOG_DIR/shutdown.log.$(date '+%Y%m%d')}"
-LOG_LEVEL="${LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR
+LOG_LEVEL="${LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR, CRITICAL
 LOG_TO_FILE="${LOG_TO_FILE:-true}"
 LOG_TO_CONSOLE="${LOG_TO_CONSOLE:-true}"
 MAX_LOG_FILES="${MAX_LOG_FILES:-7}"  # 보관할 로그 파일 수
@@ -42,7 +42,7 @@ cleanup_old_logs() {
 }
 
 # 로그 레벨 숫자 매핑
-declare -A LOG_LEVELS=([DEBUG]=0 [INFO]=1 [WARN]=2 [ERROR]=3)
+declare -A LOG_LEVELS=([DEBUG]=0 [INFO]=1 [WARN]=2 [ERROR]=3 [CRITICAL]=4)
 
 # 로그 메시지 출력 함수
 log_message() {
@@ -63,10 +63,15 @@ log_message() {
     # 콘솔 출력 (색상 적용)
     if [ "$LOG_TO_CONSOLE" = "true" ]; then
         case $level in
-            ERROR) echo -e "\033[31m$log_entry\033[0m" ;;  # 빨간색
-            WARN)  echo -e "\033[33m$log_entry\033[0m" ;;  # 노란색
-            INFO)  echo -e "\033[32m$log_entry\033[0m" ;;  # 초록색
-            DEBUG) echo -e "\033[36m$log_entry\033[0m" ;;  # 청록색
+            CRITICAL) echo -e "\033[1;41;97m$log_entry\033[0m" ;; # 흰 글자 + 빨간 배경 + 굵게
+	    ERROR)    echo -e "\033[1;31m$log_entry\033[0m" ;;    # 굵은 빨간색
+	    WARN)     echo -e "\033[1;33m$log_entry\033[0m" ;;    # 굵은 노란색
+	    INFO)     echo -e "\033[1;32m$log_entry\033[0m" ;;    # 굵은 초록색
+            DEBUG)    echo -e "\033[36m$log_entry\033[0m" ;;      # 청록색
+            # ERROR) echo -e "\033[31m$log_entry\033[0m" ;;  # 빨간색
+            # WARN)  echo -e "\033[33m$log_entry\033[0m" ;;  # 노란색
+            # INFO)  echo -e "\033[32m$log_entry\033[0m" ;;  # 초록색
+            # DEBUG) echo -e "\033[36m$log_entry\033[0m" ;;  # 청록색
         esac
     fi
 
@@ -81,6 +86,7 @@ log_debug() { log_message "DEBUG" "$1"; }
 log_info() { log_message "INFO" "$1"; }
 log_warn() { log_message "WARN" "$1"; }
 log_error() { log_message "ERROR" "$1"; }
+log_critical() { log_message "CRITICAL" "$1"; }
 
 # 스크립트 시작 로그 및 환경 정보
 init_logging() {
@@ -129,17 +135,24 @@ graceful_shutdown() {
 
     log_info "[Graceful_Shutdown] svctl status"
     {
-        echo "===== svctl status raw outpu ====="
+        echo "============================== svctl status raw output =============================="
         $PWD/svctl status
-        echo "=================================="
+        echo "====================================================================================="
     } | tee -a "$LOG_FILE"
 
     log_warn "[Graceful_Shutdown] exit_code: $exit_code"
+
     if [ $exit_code -eq 0 ] || [ $exit_code -eq 3 ]; then
-        # 정상 - Graceful_Shutdown 진행
+	log_info "[Graceful_Shutdown] Supervisord status check passed (exit: $exit_code) – proceeding with shutdown"
         :
+    elif [ $exit_code -eq 2 ]; then
+        log_error "[Graceful_Shutdown] Supervisord returned exit code 2 - Invalid command or syntax error"
+        return 1
+    elif [ $exit_code -eq 4 ]; then
+        log_warn "[Graceful_Shutdown] Supervisord returned exit code 4 - Failed to communicate with supervisord (daemon may be down)"
+        return 1
     else
-        log_warn "[Graceful_Shutdown] Supervisord is not responding to status command"
+        log_warn "[Graceful_Shutdown] Supervisord is not responding to the status command (exit: $exit_code)"
         return 1
     fi
 
