@@ -599,3 +599,52 @@
 2025-10-04 04:32:07,808 INFO supervisord started with pid 27374
 2025-10-04 04:32:08,809 INFO spawned: 'print_time' with pid 27376
 2025-10-04 04:32:10,248 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 22:53:40,421 INFO Included extra file "/home/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-10-04 22:53:40,422 INFO Included extra file "/home/jamong/engn/cfg/conf.d/test_string.conf" during parsing
+2025-10-04 22:53:40,422 INFO Set uid to user 1000 succeeded
+2025-10-04 22:53:40,430 INFO RPC interface 'supervisor' initialized
+2025-10-04 22:53:40,431 INFO RPC interface 'supervisor' initialized
+2025-10-04 22:53:40,431 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-04 22:53:40,432 INFO daemonizing the supervisord process
+2025-10-04 22:53:40,432 INFO set current directory: '/home/jamong/engn'
+2025-10-04 22:53:40,432 INFO supervisord started with pid 1140
+2025-10-04 22:53:41,434 INFO spawned: 'print_time' with pid 1141
+2025-10-04 22:53:42,455 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 23:06:39,795 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/print_time.conf" during parsing
+2025-10-04 23:06:39,795 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/test_string.conf" during parsing
+2025-10-04 23:06:39,795 INFO Set uid to user 1000 succeeded
+2025-10-04 23:30:37,587 INFO spawnerr: unknown error making dispatchers for 'test_string': ENOENT
+2025-10-04 23:30:38,588 INFO spawnerr: unknown error making dispatchers for 'test_string': ENOENT
+2025-10-04 23:30:40,945 INFO spawnerr: unknown error making dispatchers for 'test_string': ENOENT
+2025-10-04 23:30:44,004 INFO spawnerr: unknown error making dispatchers for 'test_string': ENOENT
+2025-10-04 23:30:44,004 INFO gave up: test_string entered FATAL state, too many start retries too quickly
+2025-10-04 23:30:45,250 INFO waiting for print_time to stop
+2025-10-04 23:30:45,251 WARN stopped: print_time (terminated by SIGTERM)
+2025-10-04 23:31:50,200 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/print_time.conf" during parsing
+2025-10-04 23:31:50,200 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/test_string.conf" during parsing
+2025-10-04 23:31:50,200 INFO Set uid to user 1000 succeeded
+2025-10-04 23:31:50,218 INFO RPC interface 'supervisor' initialized
+2025-10-04 23:31:50,218 INFO RPC interface 'supervisor' initialized
+2025-10-04 23:31:50,218 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-04 23:31:50,220 INFO daemonizing the supervisord process
+2025-10-04 23:31:50,220 INFO set current directory: '/home/jamong/manage_pack/supervisor-kit'
+2025-10-04 23:31:50,220 INFO supervisord started with pid 7138
+2025-10-04 23:31:51,223 INFO spawned: 'print_time' with pid 7147
+2025-10-04 23:31:52,839 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 23:31:53,659 INFO spawned: 'test_string' with pid 7158
+2025-10-04 23:31:55,247 INFO success: test_string entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 23:32:06,326 INFO waiting for print_time to stop
+2025-10-04 23:32:06,326 INFO waiting for test_string to stop
+2025-10-04 23:32:06,326 WARN stopped: print_time (terminated by SIGTERM)
+2025-10-04 23:32:06,326 WARN stopped: test_string (terminated by SIGTERM)
+2025-10-05 00:23:23,126 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/print_time.conf" during parsing
+2025-10-05 00:23:23,126 INFO Included extra file "/home/jamong/manage_pack/supervisor-kit/cfg/conf.d/test_string.conf" during parsing
+2025-10-05 00:23:23,126 INFO Set uid to user 1000 succeeded
+2025-10-05 00:23:23,139 INFO RPC interface 'supervisor' initialized
+2025-10-05 00:23:23,139 INFO RPC interface 'supervisor' initialized
+2025-10-05 00:23:23,139 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-05 00:23:23,141 INFO daemonizing the supervisord process
+2025-10-05 00:23:23,141 INFO set current directory: '/home/jamong/manage_pack/supervisor-kit'
+2025-10-05 00:23:23,150 INFO supervisord started with pid 8176
+2025-10-05 00:23:24,153 INFO spawned: 'print_time' with pid 8178
+2025-10-05 00:23:26,052 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

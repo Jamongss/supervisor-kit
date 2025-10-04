@@ -1,7 +1,14 @@
 #!/bin/bash
 
+# 파라미터가 없으면 기본값 사용
+if [ $# -eq 0 ]; then
+    COMMIT_MSG="modi"
+else
+    COMMIT_MSG="$1"
+fi
+
 git add .
 git status
-git commit -m "modi"
+git commit -m "$COMMIT_MSG"
 git branch -M main
 git push -u origin main
