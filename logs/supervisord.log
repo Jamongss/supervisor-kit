@@ -575,3 +575,27 @@
 2025-10-01 23:36:56,778 INFO supervisord started with pid 760
 2025-10-01 23:36:57,359 INFO spawned: 'print_time' with pid 762
 2025-10-01 23:36:58,368 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 02:33:47,017 INFO Included extra file "/home/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-10-04 02:33:47,017 INFO Included extra file "/home/jamong/engn/cfg/conf.d/test_string.conf" during parsing
+2025-10-04 02:33:47,017 INFO Set uid to user 1000 succeeded
+2025-10-04 02:33:47,027 INFO RPC interface 'supervisor' initialized
+2025-10-04 02:33:47,329 INFO RPC interface 'supervisor' initialized
+2025-10-04 02:33:47,329 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-04 02:33:47,330 INFO daemonizing the supervisord process
+2025-10-04 02:33:47,330 INFO set current directory: '/home/jamong/engn'
+2025-10-04 02:33:47,338 INFO supervisord started with pid 867
+2025-10-04 02:33:48,340 INFO spawned: 'print_time' with pid 868
+2025-10-04 02:33:49,365 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-10-04 04:32:03,742 INFO waiting for print_time to stop
+2025-10-04 04:32:03,743 WARN stopped: print_time (terminated by SIGTERM)
+2025-10-04 04:32:07,791 INFO Included extra file "/home/jamong/engn/cfg/conf.d/print_time.conf" during parsing
+2025-10-04 04:32:07,791 INFO Included extra file "/home/jamong/engn/cfg/conf.d/test_string.conf" during parsing
+2025-10-04 04:32:07,791 INFO Set uid to user 1000 succeeded
+2025-10-04 04:32:07,806 INFO RPC interface 'supervisor' initialized
+2025-10-04 04:32:07,806 INFO RPC interface 'supervisor' initialized
+2025-10-04 04:32:07,806 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2025-10-04 04:32:07,807 INFO daemonizing the supervisord process
+2025-10-04 04:32:07,807 INFO set current directory: '/home/jamong/engn'
+2025-10-04 04:32:07,808 INFO supervisord started with pid 27374
+2025-10-04 04:32:08,809 INFO spawned: 'print_time' with pid 27376
+2025-10-04 04:32:10,248 INFO success: print_time entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
