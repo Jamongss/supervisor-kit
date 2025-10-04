@@ -4,7 +4,7 @@
 if [ $# -eq 0 ]; then
     COMMIT_MSG="modi"
 else
-    COMMIT_MSG="$1"
+    COMMIT_MSG="$*"
 fi
 
 git add .
