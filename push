@@ -241,19 +241,23 @@ perform_git_push() {
     log_info "[Push] Using remote: $remote_name"
 
     # Push 실행
-    local push_cmd="git push -u $remote_name $branch_name"
-
     if [ "$force_push" = "true" ]; then
-        push_cmd="$push_cmd --force"
         log_warn "[Push] Force push enabled"
-    fi
-
-    if $push_cmd 2>&1 | tee -a "$LOG_FILE"; then
-        log_info "[Push] Branch pushed successfully to $remote_name/$branch_name"
-        return 0
+        if git push -u "$remote_name" "$branch_name" --force 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Push] Branch force pushed successfully to $remote_name/$branch_name"
+            return 0
+        else
+            log_error "[Push] Failed to push branch"
+            return 1
+        fi
     else
-        log_error "[Push] Failed to push branch"
-        return 1
+        if git push -u "$remote_name" "$branch_name" 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Push] Branch pushed successfully to $remote_name/$branch_name"
+            return 0
+        else
+            log_error "[Push] Failed to push branch"
+            return 1
+        fi
     fi
 }
 
