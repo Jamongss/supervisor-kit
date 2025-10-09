@@ -286,6 +286,7 @@ OPTIONS:
     -p, --prefix PREFIX     Branch name prefix (default: feature)
     -a, --add PATTERN       Pattern for git add (default: .)
     -f, --force             Force push (use with caution)
+    -r, --return            Return to original branch after push
     --no-push               Skip push step
     --existing-branch       Use current branch instead of creating new one
 
@@ -295,6 +296,7 @@ EXAMPLES:
     $0 -b "feature/my-feature"                  # Specific branch name
     $0 -p "bugfix" -m "Fix critical bug"        # Bugfix branch with message
     $0 -a "src/*.js" -m "Update JS files"       # Add specific files
+    $0 -r -m "Commit and return to main"        # Return to original branch
     $0 --existing-branch -m "Update"            # Use current branch
     $0 --no-push -m "Local commit"              # Commit only, no push
 
@@ -315,6 +317,8 @@ main() {
     local force_push=false
     local skip_push=false
     local use_existing_branch=false
+    local return_to_original=false
+    local original_branch=""
 
     # 인자 파싱
     while [ $# -gt 0 ]; do
@@ -347,6 +351,10 @@ main() {
                 force_push=true
                 shift
                 ;;
+            -r|--return)
+                return_to_original=true
+                shift
+                ;;
             --no-push)
                 skip_push=true
                 shift
@@ -364,6 +372,12 @@ main() {
     done
 
     log_info "[Main] Starting git workflow process"
+
+    # 원래 브랜치 저장
+    if [ "$return_to_original" = true ]; then
+        original_branch=$(git branch --show-current)
+        log_info "[Main] Original branch saved: $original_branch"
+    fi
 
     # Git 저장소 확인
     if ! check_git_repo; then
@@ -414,8 +428,22 @@ main() {
         log_info "[Main] Skipping push as requested"
     fi
 
+    # 원래 브랜치로 복귀
+    if [ "$return_to_original" = true ] && [ -n "$original_branch" ] && [ "$original_branch" != "$branch_name" ]; then
+        log_info "[Main] Returning to original branch: $original_branch"
+        if git checkout "$original_branch" 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Main] Successfully returned to branch: $original_branch"
+        else
+            log_warn "[Main] Failed to return to original branch: $original_branch"
+            log_warn "[Main] Currently on branch: $(git branch --show-current)"
+        fi
+    fi
+
     log_info "[Main] ========== WORKFLOW COMPLETED =========="
     log_info "[Main] Branch: $branch_name"
+    if [ "$return_to_original" = true ]; then
+        log_info "[Main] Current branch: $(git branch --show-current)"
+    fi
     log_info "[Main] All operations completed successfully"
     return 0
 }

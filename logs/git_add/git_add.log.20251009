@@ -235,3 +235,88 @@ branch 'feature/jamong_20251009_162301' set up to track 'origin/feature/jamong_2
 Switched to a new branch 'feature/jamong_20251009_163339'
 [INFO] 2025-10-09 16:33:39 [PID:27832] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_163339
 [INFO] 2025-10-09 16:33:39 [PID:27832] - [Add] Adding files to staging area: .
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Add] Files added successfully
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Add] Staged files:
+============================== git diff --cached --name-status ==============================
+R100	git_stash.sh	git_stash
+M	logs/git_add/git_add.log.20251009
+============================================================================================
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Commit] Committing changes with message: Auto-commit at 2025-10-09 16:33:39
+[feature/jamong_20251009_163339 07379f1] Auto-commit at 2025-10-09 16:33:39
+ 2 files changed, 30 insertions(+)
+ rename git_stash.sh => git_stash (100%)
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Commit] Changes committed successfully
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Commit] Last commit info:
+============================== git log -1 --stat ==============================
+commit 07379f1ca21efaf07cdb929e5150738610acc1b2
+Author: JamongSS <bebemine9700@gmail.com>
+Date:   Thu Oct 9 16:33:39 2025 +0900
+
+    Auto-commit at 2025-10-09 16:33:39
+
+ git_stash.sh => git_stash         |  0
+ logs/git_add/git_add.log.20251009 | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+)
+===============================================================================
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Push] Pushing branch to remote: feature/jamong_20251009_163339
+[INFO] 2025-10-09 16:33:39 [PID:27832] - [Push] Using remote: origin
+remote: 
+remote: Create a pull request for 'feature/jamong_20251009_163339' on GitHub by visiting:        
+remote:      https://github.com/Jamongss/supervisor-kit/pull/new/feature/jamong_20251009_163339        
+remote: 
+To https://github.com/Jamongss/supervisor-kit.git
+ * [new branch]      feature/jamong_20251009_163339 -> feature/jamong_20251009_163339
+branch 'feature/jamong_20251009_163339' set up to track 'origin/feature/jamong_20251009_163339'.
+[INFO] 2025-10-09 16:33:41 [PID:27832] - [Push] Branch pushed successfully to origin/feature/jamong_20251009_163339
+[INFO] 2025-10-09 16:33:41 [PID:27832] - [Main] ========== WORKFLOW COMPLETED ==========
+[INFO] 2025-10-09 16:33:41 [PID:27832] - [Main] Branch: feature/jamong_20251009_163339
+[INFO] 2025-10-09 16:33:41 [PID:27832] - [Main] All operations completed successfully
+[INFO] 2025-10-09 16:33:41 [PID:27832] - [Main] Script execution completed successfully
+=== Script ended at #오후 with exit code: 0 ===
+
+===================================================================================
+=== Git Add & Push Script Started at #오후 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 29620
+=== Working Directory: /Users/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-10-09 16:44:23 [PID:29620] - [Init] SHELL: /bin/zsh
+[INFO] 2025-10-09 16:44:23 [PID:29620] - [Init] Logging initialized - File: /Users/jamong/manage_pack/supervisor-kit/logs/git_add/git_add.log.20251009, Level: INFO
+[INFO] 2025-10-09 16:44:23 [PID:29620] - [Init] Git Add & Push Script v1.0
+[INFO] 2025-10-09 16:44:23 [PID:29620] - [Init] Current user: jamong
+[INFO] 2025-10-09 16:44:23 [PID:29620] - [Init] Current directory: /Users/jamong/manage_pack/supervisor-kit
+[ERROR] 2025-10-09 16:44:23 [PID:29620] - [Main] Unknown option: push 스크립트에 main으로 리턴 기능 추가
+[ERROR] 2025-10-09 16:44:23 [PID:29620] - [Main] Script execution failed
+=== Script ended at #오후 with exit code: 1 ===
+
+===================================================================================
+=== Git Add & Push Script Started at #오후 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 29695
+=== Working Directory: /Users/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Init] SHELL: /bin/zsh
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Init] Logging initialized - File: /Users/jamong/manage_pack/supervisor-kit/logs/git_add/git_add.log.20251009, Level: INFO
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Init] Git Add & Push Script v1.0
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Init] Current user: jamong
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Init] Current directory: /Users/jamong/manage_pack/supervisor-kit
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Main] Starting git workflow process
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Check] Checking if current directory is a git repository...
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Check] Git repository confirmed
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Status] Checking git status...
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Status] Current branch: feature/jamong_20251009_163339
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Status] Changes detected in working directory
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Status] Current git status:
+============================== git status ==============================
+ M logs/git_add/git_add.log.20251009
+ M push
+========================================================================
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Main] Auto-generated branch name: feature/jamong_20251009_164430
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Branch] Creating new branch: feature/jamong_20251009_164430
+Switched to a new branch 'feature/jamong_20251009_164430'
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_164430
+[INFO] 2025-10-09 16:44:30 [PID:29695] - [Add] Adding files to staging area: .
