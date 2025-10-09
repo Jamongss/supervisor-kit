@@ -1,0 +1,445 @@
+#!/bin/sh
+
+# 이미 재실행되었는지 체크하는 마커
+if [ -z "${_REEXEC_DONE:-}" ]; then
+    # 현재 실행 중인 쉘 이름(ps 기반)
+    CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/^-*//')  # 접두사 제거
+
+    # 사용자의 로그인 쉘 이름
+    TARGET_SHELL=$(basename "$SHELL")
+
+    # 같지 않으면 재실행
+    if [ "$CURRENT_SHELL" != "$TARGET_SHELL" ]; then
+        export _REEXEC_DONE=1
+        echo "Re-executing script with $TARGET_SHELL..."
+        exec "$SHELL" "$0" "$@"
+        # exec 성공하면 아래로 오지 않음
+    fi
+fi
+
+# Git Add, Branch & Push 스크립트
+
+set -e  # 오류 발생시 스크립트 중단
+
+# =============================================================================
+# 로그 시스템 설정
+# =============================================================================
+
+# 로그 설정 (환경변수로 오버라이드 가능)
+LOG_DIR="${LOG_DIR:-$PWD/logs/git_add}"
+LOG_FILE="${LOG_FILE:-$LOG_DIR/git_add.log.$(date '+%Y%m%d')}"
+LOG_LEVEL="${LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR, CRITICAL
+LOG_TO_FILE="${LOG_TO_FILE:-true}"
+LOG_TO_CONSOLE="${LOG_TO_CONSOLE:-true}"
+MAX_LOG_FILES="${MAX_LOG_FILES:-7}"  # 보관할 로그 파일 수
+
+# 로그 디렉토리 생성
+mkdir -p "$LOG_DIR"
+
+# 로그 로테이션 (이전 로그 파일 정리)
+cleanup_old_logs() {
+    find "$LOG_DIR" -name "git_add_*.log" -mtime +$MAX_LOG_FILES -delete 2>/dev/null || true
+}
+
+# 로그 레벨 숫자 매핑
+declare -A LOG_LEVELS=([DEBUG]=0 [INFO]=1 [WARN]=2 [ERROR]=3 [CRITICAL]=4)
+
+# 로그 메시지 출력 함수
+log_message() {
+    local level="$1"
+    local message="$2"
+    local current_level_num=${LOG_LEVELS[$LOG_LEVEL]}
+    local message_level_num=${LOG_LEVELS[$level]}
+
+    # 로그 레벨 체크 (설정된 레벨보다 낮으면 출력 안함)
+    if [ ${message_level_num:-1} -lt ${current_level_num:-1} ]; then
+        return 0
+    fi
+
+    local timestamp="$(date '+%Y-%m-%d %H:%M:%S')"
+    local pid="$$"
+    local log_entry="[$level] $timestamp [PID:$pid] - $message"
+
+    # 콘솔 출력 (색상 적용)
+    if [ "$LOG_TO_CONSOLE" = "true" ]; then
+        case $level in
+            CRITICAL) echo -e "\033[1;41;97m$log_entry\033[0m" ;; # 흰 글자 + 빨간 배경 + 굵게
+	    ERROR)    echo -e "\033[1;31m$log_entry\033[0m" ;;    # 굵은 빨간색
+	    WARN)     echo -e "\033[1;33m$log_entry\033[0m" ;;    # 굵은 노란색
+	    INFO)     echo -e "\033[1;32m$log_entry\033[0m" ;;    # 굵은 초록색
+            DEBUG)    echo -e "\033[36m$log_entry\033[0m" ;;      # 청록색
+        esac
+    fi
+
+    # 파일 저장
+    if [ "$LOG_TO_FILE" = "true" ]; then
+        echo "$log_entry" >> "$LOG_FILE"
+    fi
+}
+
+# 로그 레벨별 함수들
+log_debug() { log_message "DEBUG" "$1"; }
+log_info() { log_message "INFO" "$1"; }
+log_warn() { log_message "WARN" "$1"; }
+log_error() { log_message "ERROR" "$1"; }
+log_critical() { log_message "CRITICAL" "$1"; }
+
+# 스크립트 시작 로그 및 환경 정보
+init_logging() {
+    cleanup_old_logs
+
+    if [ "$LOG_TO_FILE" = "true" ]; then
+        echo "===================================================================================" >> "$LOG_FILE"
+        echo "=== Git Add & Push Script Started at $(date) ===" >> "$LOG_FILE"
+        echo "=== Script: $0" >> "$LOG_FILE"
+        echo "=== User: $(whoami)" >> "$LOG_FILE"
+        echo "=== PID: $$" >> "$LOG_FILE"
+        echo "=== Working Directory: $(pwd)" >> "$LOG_FILE"
+        echo "=== Log Level: $LOG_LEVEL" >> "$LOG_FILE"
+        echo "===================================================================================" >> "$LOG_FILE"
+    fi
+
+    log_info "[Init] SHELL: $SHELL"
+    log_info "[Init] Logging initialized - File: $LOG_FILE, Level: $LOG_LEVEL"
+    log_debug "[Init] Environment: USER=$(whoami), PWD=$(pwd), SHELL=$SHELL"
+}
+
+# =============================================================================
+# 메인 애플리케이션 로직
+# =============================================================================
+
+# Git 저장소 확인
+check_git_repo() {
+    log_info "[Check] Checking if current directory is a git repository..."
+
+    if ! git rev-parse --git-dir > /dev/null 2>&1; then
+        log_error "[Check] Current directory is not a git repository"
+        return 1
+    fi
+
+    log_info "[Check] Git repository confirmed"
+    return 0
+}
+
+# Git 상태 확인
+check_git_status() {
+    log_info "[Status] Checking git status..."
+
+    # 현재 브랜치 확인
+    local current_branch=$(git branch --show-current)
+    log_info "[Status] Current branch: $current_branch"
+
+    # 변경사항 확인
+    if git diff --quiet && git diff --cached --quiet; then
+        log_warn "[Status] No changes detected in working directory"
+        return 1
+    fi
+
+    log_info "[Status] Changes detected in working directory"
+
+    # 변경 내역 로그
+    log_info "[Status] Current git status:"
+    {
+        echo "============================== git status =============================="
+        git status --short
+        echo "========================================================================"
+    } | tee -a "$LOG_FILE"
+
+    return 0
+}
+
+# 브랜치 이름 생성
+generate_branch_name() {
+    local prefix="${1:-feature}"
+    local timestamp=$(date '+%Y%m%d_%H%M%S')
+    local username=$(whoami)
+
+    echo "${prefix}/${username}_${timestamp}"
+}
+
+# 새 브랜치 생성 및 체크아웃
+create_and_checkout_branch() {
+    local branch_name="$1"
+
+    log_info "[Branch] Creating new branch: $branch_name"
+
+    if git checkout -b "$branch_name" 2>&1 | tee -a "$LOG_FILE"; then
+        log_info "[Branch] Successfully created and checked out branch: $branch_name"
+        return 0
+    else
+        log_error "[Branch] Failed to create branch: $branch_name"
+        return 1
+    fi
+}
+
+# Git add 실행
+perform_git_add() {
+    local add_pattern="${1:-.}"
+
+    log_info "[Add] Adding files to staging area: $add_pattern"
+
+    if git add "$add_pattern" 2>&1 | tee -a "$LOG_FILE"; then
+        log_info "[Add] Files added successfully"
+
+        # Staged files 확인
+        log_info "[Add] Staged files:"
+        {
+            echo "============================== git diff --cached --name-status =============================="
+            git diff --cached --name-status
+            echo "============================================================================================"
+        } | tee -a "$LOG_FILE"
+
+        return 0
+    else
+        log_error "[Add] Failed to add files"
+        return 1
+    fi
+}
+
+# Git commit 실행
+perform_git_commit() {
+    local commit_message="$1"
+
+    if [ -z "$commit_message" ]; then
+        commit_message="Auto-commit at $(date '+%Y-%m-%d %H:%M:%S')"
+    fi
+
+    log_info "[Commit] Committing changes with message: $commit_message"
+
+    if git commit -m "$commit_message" 2>&1 | tee -a "$LOG_FILE"; then
+        log_info "[Commit] Changes committed successfully"
+
+        # Commit 정보 확인
+        log_info "[Commit] Last commit info:"
+        {
+            echo "============================== git log -1 --stat =============================="
+            git log -1 --stat
+            echo "==============================================================================="
+        } | tee -a "$LOG_FILE"
+
+        return 0
+    else
+        log_error "[Commit] Failed to commit changes"
+        return 1
+    fi
+}
+
+# Git push 실행
+perform_git_push() {
+    local branch_name="$1"
+    local force_push="${2:-false}"
+
+    log_info "[Push] Pushing branch to remote: $branch_name"
+
+    # 원격 저장소 확인
+    if ! git remote -v | grep -q .; then
+        log_error "[Push] No remote repository configured"
+        return 1
+    fi
+
+    local remote_name=$(git remote | head -n 1)
+    log_info "[Push] Using remote: $remote_name"
+
+    # Push 실행
+    if [ "$force_push" = "true" ]; then
+        log_warn "[Push] Force push enabled"
+        if git push -u "$remote_name" "$branch_name" --force 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Push] Branch force pushed successfully to $remote_name/$branch_name"
+            return 0
+        else
+            log_error "[Push] Failed to push branch"
+            return 1
+        fi
+    else
+        if git push -u "$remote_name" "$branch_name" 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Push] Branch pushed successfully to $remote_name/$branch_name"
+            return 0
+        else
+            log_error "[Push] Failed to push branch"
+            return 1
+        fi
+    fi
+}
+
+# 종료 시 정리 작업 (시그널 핸들러)
+cleanup_on_exit() {
+    local exit_code=$?
+    log_debug "[CleanUp] Script exiting with code: $exit_code"
+
+    if [ "$LOG_TO_FILE" = "true" ]; then
+        echo "=== Script ended at $(date) with exit code: $exit_code ===" >> "$LOG_FILE"
+        echo "" >> "$LOG_FILE"
+    fi
+}
+
+# 사용법 출력
+print_usage() {
+    cat << EOF
+Usage: $0 [OPTIONS]
+
+Git workflow automation: add -> create branch -> commit -> push
+
+OPTIONS:
+    -h, --help              Show this help message
+    -b, --branch NAME       Use specific branch name (default: auto-generated)
+    -m, --message MSG       Commit message (default: auto-generated)
+    -p, --prefix PREFIX     Branch name prefix (default: feature)
+    -a, --add PATTERN       Pattern for git add (default: .)
+    -f, --force             Force push (use with caution)
+    --no-push               Skip push step
+    --existing-branch       Use current branch instead of creating new one
+
+EXAMPLES:
+    $0                                          # Auto-generate branch and commit message
+    $0 -m "Add new feature"                     # Custom commit message
+    $0 -b "feature/my-feature"                  # Specific branch name
+    $0 -p "bugfix" -m "Fix critical bug"        # Bugfix branch with message
+    $0 -a "src/*.js" -m "Update JS files"       # Add specific files
+    $0 --existing-branch -m "Update"            # Use current branch
+    $0 --no-push -m "Local commit"              # Commit only, no push
+
+ENVIRONMENT VARIABLES:
+    LOG_LEVEL       Set log level (DEBUG, INFO, WARN, ERROR, CRITICAL)
+    LOG_TO_FILE     Enable/disable file logging (true/false)
+    LOG_TO_CONSOLE  Enable/disable console logging (true/false)
+
+EOF
+}
+
+# 메인 실행 함수
+main() {
+    local branch_name=""
+    local commit_message=""
+    local branch_prefix="feature"
+    local add_pattern="."
+    local force_push=false
+    local skip_push=false
+    local use_existing_branch=false
+
+    # 인자 파싱
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -h|--help)
+                print_usage
+                exit 0
+                ;;
+            -b|--branch)
+                shift
+                branch_name="$1"
+                shift
+                ;;
+            -m|--message)
+                shift
+                commit_message="$1"
+                shift
+                ;;
+            -p|--prefix)
+                shift
+                branch_prefix="$1"
+                shift
+                ;;
+            -a|--add)
+                shift
+                add_pattern="$1"
+                shift
+                ;;
+            -f|--force)
+                force_push=true
+                shift
+                ;;
+            --no-push)
+                skip_push=true
+                shift
+                ;;
+            --existing-branch)
+                use_existing_branch=true
+                shift
+                ;;
+            *)
+                log_error "[Main] Unknown option: $1"
+                print_usage
+                return 1
+                ;;
+        esac
+    done
+
+    log_info "[Main] Starting git workflow process"
+
+    # Git 저장소 확인
+    if ! check_git_repo; then
+        return 1
+    fi
+
+    # Git 상태 확인
+    if ! check_git_status; then
+        log_info "[Main] No changes to commit"
+        return 0
+    fi
+
+    # 브랜치 처리
+    if [ "$use_existing_branch" = false ]; then
+        # 새 브랜치 생성
+        if [ -z "$branch_name" ]; then
+            branch_name=$(generate_branch_name "$branch_prefix")
+            log_info "[Main] Auto-generated branch name: $branch_name"
+        fi
+
+        if ! create_and_checkout_branch "$branch_name"; then
+            return 1
+        fi
+    else
+        # 기존 브랜치 사용
+        branch_name=$(git branch --show-current)
+        log_info "[Main] Using existing branch: $branch_name"
+    fi
+
+    # Git add 실행
+    if ! perform_git_add "$add_pattern"; then
+        return 1
+    fi
+
+    # Git commit 실행
+    if ! perform_git_commit "$commit_message"; then
+        return 1
+    fi
+
+    # Git push 실행
+    if [ "$skip_push" = false ]; then
+        if ! perform_git_push "$branch_name" "$force_push"; then
+            log_warn "[Main] Push failed, but local commit was successful"
+            log_warn "[Main] You can manually push later with: git push -u origin $branch_name"
+            return 1
+        fi
+    else
+        log_info "[Main] Skipping push as requested"
+    fi
+
+    log_info "[Main] ========== WORKFLOW COMPLETED =========="
+    log_info "[Main] Branch: $branch_name"
+    log_info "[Main] All operations completed successfully"
+    return 0
+}
+
+# =============================================================================
+# 스크립트 실행
+# =============================================================================
+
+# 시그널 핸들러 설정
+trap cleanup_on_exit EXIT
+
+# 로그 시스템 초기화
+init_logging
+
+# 시작 환경 정보 로깅
+log_info "[Init] Git Add & Push Script v1.0"
+log_info "[Init] Current user: $(whoami)"
+log_info "[Init] Current directory: $(pwd)"
+
+# 메인 로직 실행
+if main "$@"; then
+    log_info "[Main] Script execution completed successfully"
+    exit 0
+else
+    log_error "[Main] Script execution failed"
+    exit 1
+fi
