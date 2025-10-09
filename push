@@ -432,6 +432,13 @@ main() {
     # 원래 브랜치로 복귀
     if [ "$return_to_original" = true ] && [ -n "$original_branch" ] && [ "$original_branch" != "$branch_name" ]; then
         log_info "[Main] Returning to original branch: $original_branch"
+
+        # 로그 파일과 로그 디렉토리가 변경되었다면 stash 또는 제외
+        if git diff --name-only | grep -q "^logs/"; then
+            log_debug "[Main] Stashing log file changes before branch switch"
+            git stash push -u logs/ -m "Auto-stash logs before branch switch" 2>&1 >> "$LOG_FILE" || true
+        fi
+
         if git checkout "$original_branch" 2>&1 | tee -a "$LOG_FILE"; then
             log_info "[Main] Successfully returned to branch: $original_branch"
         else
