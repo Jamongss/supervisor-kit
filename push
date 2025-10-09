@@ -373,15 +373,15 @@ main() {
 
     log_info "[Main] Starting git workflow process"
 
-    # 원래 브랜치 저장
-    if [ "$return_to_original" = true ]; then
-        original_branch=$(git branch --show-current)
-        log_info "[Main] Original branch saved: $original_branch"
-    fi
-
     # Git 저장소 확인
     if ! check_git_repo; then
         return 1
+    fi
+
+    # 원래 브랜치 저장 (Git 저장소 확인 후, 브랜치 생성 전)
+    if [ "$return_to_original" = true ]; then
+        original_branch=$(git branch --show-current)
+        log_info "[Main] Original branch saved: $original_branch"
     fi
 
     # Git 상태 확인
@@ -418,11 +418,12 @@ main() {
     fi
 
     # Git push 실행
+    local push_failed=false
     if [ "$skip_push" = false ]; then
         if ! perform_git_push "$branch_name" "$force_push"; then
             log_warn "[Main] Push failed, but local commit was successful"
             log_warn "[Main] You can manually push later with: git push -u origin $branch_name"
-            return 1
+            push_failed=true
         fi
     else
         log_info "[Main] Skipping push as requested"
@@ -437,6 +438,11 @@ main() {
             log_warn "[Main] Failed to return to original branch: $original_branch"
             log_warn "[Main] Currently on branch: $(git branch --show-current)"
         fi
+    fi
+
+    # Push 실패 시 에러 반환
+    if [ "$push_failed" = true ]; then
+        return 1
     fi
 
     log_info "[Main] ========== WORKFLOW COMPLETED =========="
