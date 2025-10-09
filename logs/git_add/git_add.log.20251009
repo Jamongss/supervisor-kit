@@ -34,3 +34,91 @@
 Switched to a new branch 'feature/jamong_20251009_165108'
 [INFO] 2025-10-09 16:51:08 [PID:33347] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_165108
 [INFO] 2025-10-09 16:51:08 [PID:33347] - [Add] Adding files to staging area: .
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Add] Files added successfully
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Add] Staged files:
+============================== git diff --cached --name-status ==============================
+A	.gitignore
+M	logs/git_add/git_add.log.20251009
+D	logs/restart/restart.log.20251009
+D	logs/supervisor/print_time.err
+D	logs/supervisor/print_time.out
+D	logs/supervisor/test_string.err
+D	logs/supervisor/test_string.out
+D	logs/supervisord.log
+M	push
+============================================================================================
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Commit] Committing changes with message: Auto-commit at 2025-10-09 16:51:08
+[feature/jamong_20251009_165108 7173cac] Auto-commit at 2025-10-09 16:51:08
+ 9 files changed, 33 insertions(+), 19530 deletions(-)
+ create mode 100644 .gitignore
+ delete mode 100644 logs/restart/restart.log.20251009
+ delete mode 100644 logs/supervisor/print_time.err
+ delete mode 100644 logs/supervisor/print_time.out
+ delete mode 100644 logs/supervisor/test_string.err
+ delete mode 100644 logs/supervisor/test_string.out
+ delete mode 100644 logs/supervisord.log
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Commit] Changes committed successfully
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Commit] Last commit info:
+============================== git log -1 --stat ==============================
+commit 7173cacb2343628e3c1a836769a5ddca65a0916d
+Author: JamongSS <bebemine9700@gmail.com>
+Date:   Thu Oct 9 16:51:08 2025 +0900
+
+    Auto-commit at 2025-10-09 16:51:08
+
+ .gitignore                        |     1 +
+ logs/git_add/git_add.log.20251009 |   548 +-
+ logs/restart/restart.log.20251009 |   185 -
+ logs/supervisor/print_time.err    |    13 -
+ logs/supervisor/print_time.out    | 18100 ------------------------------------
+ logs/supervisor/test_string.err   |     0
+ logs/supervisor/test_string.out   |     5 -
+ logs/supervisord.log              |   704 --
+ push                              |     7 +
+ 9 files changed, 33 insertions(+), 19530 deletions(-)
+===============================================================================
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Push] Pushing branch to remote: feature/jamong_20251009_165108
+[INFO] 2025-10-09 16:51:08 [PID:33347] - [Push] Using remote: origin
+remote: 
+remote: Create a pull request for 'feature/jamong_20251009_165108' on GitHub by visiting:        
+remote:      https://github.com/Jamongss/supervisor-kit/pull/new/feature/jamong_20251009_165108        
+remote: 
+To https://github.com/Jamongss/supervisor-kit.git
+ * [new branch]      feature/jamong_20251009_165108 -> feature/jamong_20251009_165108
+branch 'feature/jamong_20251009_165108' set up to track 'origin/feature/jamong_20251009_165108'.
+[INFO] 2025-10-09 16:51:10 [PID:33347] - [Push] Branch pushed successfully to origin/feature/jamong_20251009_165108
+[INFO] 2025-10-09 16:51:10 [PID:33347] - [Main] ========== WORKFLOW COMPLETED ==========
+[INFO] 2025-10-09 16:51:10 [PID:33347] - [Main] Branch: feature/jamong_20251009_165108
+[INFO] 2025-10-09 16:51:10 [PID:33347] - [Main] All operations completed successfully
+[INFO] 2025-10-09 16:51:10 [PID:33347] - [Main] Script execution completed successfully
+=== Script ended at #오후 with exit code: 0 ===
+
+===================================================================================
+=== Git Add & Push Script Started at #오후 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 33514
+=== Working Directory: /Users/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Init] SHELL: /bin/zsh
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Init] Logging initialized - File: /Users/jamong/manage_pack/supervisor-kit/logs/git_add/git_add.log.20251009, Level: INFO
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Init] Git Add & Push Script v1.0
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Init] Current user: jamong
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Init] Current directory: /Users/jamong/manage_pack/supervisor-kit
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Main] Starting git workflow process
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Check] Checking if current directory is a git repository...
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Check] Git repository confirmed
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Main] Original branch saved: feature/jamong_20251009_165108
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Status] Checking git status...
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Status] Current branch: feature/jamong_20251009_165108
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Status] Changes detected in working directory
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Status] Current git status:
+============================== git status ==============================
+ M logs/git_add/git_add.log.20251009
+========================================================================
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Main] Auto-generated branch name: feature/jamong_20251009_165116
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Branch] Creating new branch: feature/jamong_20251009_165116
+Switched to a new branch 'feature/jamong_20251009_165116'
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_165116
+[INFO] 2025-10-09 16:51:16 [PID:33514] - [Add] Adding files to staging area: .
