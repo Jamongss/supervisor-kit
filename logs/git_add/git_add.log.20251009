@@ -1,0 +1,31 @@
+===================================================================================
+=== Git Add & Push Script Started at #오후 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 23401
+=== Working Directory: /Users/jamong/manage_pack/supervisor-kit
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Init] SHELL: /bin/zsh
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Init] Logging initialized - File: /Users/jamong/manage_pack/supervisor-kit/logs/git_add/git_add.log.20251009, Level: INFO
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Init] Git Add & Push Script v1.0
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Init] Current user: jamong
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Init] Current directory: /Users/jamong/manage_pack/supervisor-kit
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Main] Starting git workflow process
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Check] Checking if current directory is a git repository...
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Check] Git repository confirmed
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Status] Checking git status...
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Status] Current branch: main
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Status] Changes detected in working directory
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Status] Current git status:
+============================== git status ==============================
+ M logs/supervisor/print_time.out
+?? git_stash.sh
+?? logs/git_add/
+?? push
+========================================================================
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Main] Auto-generated branch name: feature/jamong_20251009_161920
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Branch] Creating new branch: feature/jamong_20251009_161920
+Switched to a new branch 'feature/jamong_20251009_161920'
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_161920
+[INFO] 2025-10-09 16:19:20 [PID:23401] - [Add] Adding files to staging area: .
