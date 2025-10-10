@@ -286,6 +286,7 @@ OPTIONS:
     -p, --prefix PREFIX     Branch name prefix (default: feature)
     -a, --add PATTERN       Pattern for git add (default: .)
     -f, --force             Force push (use with caution)
+    -r, --return            Return to original branch after push
     --no-push               Skip push step
     --existing-branch       Use current branch instead of creating new one
 
@@ -295,6 +296,7 @@ EXAMPLES:
     $0 -b "feature/my-feature"                  # Specific branch name
     $0 -p "bugfix" -m "Fix critical bug"        # Bugfix branch with message
     $0 -a "src/*.js" -m "Update JS files"       # Add specific files
+    $0 -r -m "Commit and return to main"        # Return to original branch
     $0 --existing-branch -m "Update"            # Use current branch
     $0 --no-push -m "Local commit"              # Commit only, no push
 
@@ -315,6 +317,8 @@ main() {
     local force_push=false
     local skip_push=false
     local use_existing_branch=false
+    local return_to_original=false
+    local original_branch=""
 
     # 인자 파싱
     while [ $# -gt 0 ]; do
@@ -347,6 +351,10 @@ main() {
                 force_push=true
                 shift
                 ;;
+            -r|--return)
+                return_to_original=true
+                shift
+                ;;
             --no-push)
                 skip_push=true
                 shift
@@ -368,6 +376,12 @@ main() {
     # Git 저장소 확인
     if ! check_git_repo; then
         return 1
+    fi
+
+    # 원래 브랜치 저장 (Git 저장소 확인 후, 브랜치 생성 전)
+    if [ "$return_to_original" = true ]; then
+        original_branch=$(git branch --show-current)
+        log_info "[Main] Original branch saved: $original_branch"
     fi
 
     # Git 상태 확인
@@ -404,18 +418,45 @@ main() {
     fi
 
     # Git push 실행
+    local push_failed=false
     if [ "$skip_push" = false ]; then
         if ! perform_git_push "$branch_name" "$force_push"; then
             log_warn "[Main] Push failed, but local commit was successful"
             log_warn "[Main] You can manually push later with: git push -u origin $branch_name"
-            return 1
+            push_failed=true
         fi
     else
         log_info "[Main] Skipping push as requested"
     fi
 
+    # 원래 브랜치로 복귀
+    if [ "$return_to_original" = true ] && [ -n "$original_branch" ] && [ "$original_branch" != "$branch_name" ]; then
+        log_info "[Main] Returning to original branch: $original_branch"
+
+        # 로그 파일과 로그 디렉토리가 변경되었다면 stash 또는 제외
+        if git diff --name-only | grep -q "^logs/"; then
+            log_debug "[Main] Stashing log file changes before branch switch"
+            git stash push -u logs/ -m "Auto-stash logs before branch switch" 2>&1 >> "$LOG_FILE" || true
+        fi
+
+        if git checkout "$original_branch" 2>&1 | tee -a "$LOG_FILE"; then
+            log_info "[Main] Successfully returned to branch: $original_branch"
+        else
+            log_warn "[Main] Failed to return to original branch: $original_branch"
+            log_warn "[Main] Currently on branch: $(git branch --show-current)"
+        fi
+    fi
+
+    # Push 실패 시 에러 반환
+    if [ "$push_failed" = true ]; then
+        return 1
+    fi
+
     log_info "[Main] ========== WORKFLOW COMPLETED =========="
     log_info "[Main] Branch: $branch_name"
+    if [ "$return_to_original" = true ]; then
+        log_info "[Main] Current branch: $(git branch --show-current)"
+    fi
     log_info "[Main] All operations completed successfully"
     return 0
 }
