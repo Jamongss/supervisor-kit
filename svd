@@ -93,7 +93,7 @@ class Svctl(object):
                 print(
                     "[INFO] - Make child log dir: {}\n".format(child_log_dir)
                 )
-                os.makedirs(child_log_dir, exist_ok=True)
+                os.makedirs(child_log_dir)
 
             # Make new supervisord.conf
             with open(self.re_conf_path, 'w') as f:
