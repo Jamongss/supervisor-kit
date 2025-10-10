@@ -268,3 +268,47 @@ MM logs/git_add/git_add.log.20251009
 Switched to a new branch 'feature/jamong_20251009_165213'
 [INFO] 2025-10-09 16:52:13 [PID:34056] - [Branch] Successfully created and checked out branch: feature/jamong_20251009_165213
 [INFO] 2025-10-09 16:52:13 [PID:34056] - [Add] Adding files to staging area: .
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Add] Files added successfully
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Add] Staged files:
+============================== git diff --cached --name-status ==============================
+M	logs/git_add/git_add.log.20251009
+============================================================================================
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Commit] Committing changes with message: test
+[feature/jamong_20251009_165213 df4a812] test
+ 1 file changed, 73 insertions(+)
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Commit] Changes committed successfully
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Commit] Last commit info:
+============================== git log -1 --stat ==============================
+commit df4a81291d246eb320c7b91fda706da894485112
+Author: JamongSS <bebemine9700@gmail.com>
+Date:   Thu Oct 9 16:52:13 2025 +0900
+
+    test
+
+ logs/git_add/git_add.log.20251009 | 73 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+===============================================================================
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Push] Pushing branch to remote: feature/jamong_20251009_165213
+[INFO] 2025-10-09 16:52:13 [PID:34056] - [Push] Using remote: origin
+remote: 
+remote: Create a pull request for 'feature/jamong_20251009_165213' on GitHub by visiting:        
+remote:      https://github.com/Jamongss/supervisor-kit/pull/new/feature/jamong_20251009_165213        
+remote: 
+To https://github.com/Jamongss/supervisor-kit.git
+ * [new branch]      feature/jamong_20251009_165213 -> feature/jamong_20251009_165213
+branch 'feature/jamong_20251009_165213' set up to track 'origin/feature/jamong_20251009_165213'.
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Push] Branch pushed successfully to origin/feature/jamong_20251009_165213
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] Returning to original branch: feature/jamong_20251009_165121
+Saved working directory and index state On feature/jamong_20251009_165213: Auto-stash logs before branch switch
+error: Your local changes to the following files would be overwritten by checkout:
+	logs/git_add/git_add.log.20251009
+Please commit your changes or stash them before you switch branches.
+Aborting
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] Successfully returned to branch: feature/jamong_20251009_165121
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] ========== WORKFLOW COMPLETED ==========
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] Branch: feature/jamong_20251009_165213
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] Current branch: feature/jamong_20251009_165213
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] All operations completed successfully
+[INFO] 2025-10-09 16:52:15 [PID:34056] - [Main] Script execution completed successfully
+=== Script ended at #오후 with exit code: 0 ===
+
