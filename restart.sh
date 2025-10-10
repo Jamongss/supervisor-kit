@@ -156,7 +156,8 @@ graceful_shutdown() {
     log_info "[Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes..."
     if $PWD/svctl stop all 2>/dev/null; then
         log_info "[Graceful_Shutdown] All supervised processes stop command sent"
-        sleep 2
+        log_info "[Graceful_Shutdown] Waiting for process stop... 10s"
+        sleep 10
 
         log_info "[Graceful_Shutdown] Sending shutdown command to supervisord..."
         if $PWD/svctl shutdown 2>/dev/null; then
