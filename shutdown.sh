@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# 이미 재실행되었는지 체크하는 마커
+# 이미 재실행 되었는지 체크하는 마커
 if [ -z "${_REEXEC_DONE:-}" ]; then
     # 현재 실행 중인 쉘 이름(ps 기반)
     CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/^-*//')  # 접두사 제거
