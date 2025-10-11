@@ -328,24 +328,20 @@ main() {
                 exit 0
                 ;;
             -b|--branch)
-                shift
                 branch_name="$1"
-                shift
+                shift 2
                 ;;
             -m|--message)
-                shift
                 commit_message="$1"
-                shift
+                shift 2
                 ;;
             -p|--prefix)
-                shift
                 branch_prefix="$1"
-                shift
+                shift 2
                 ;;
             -a|--add)
-                shift
                 add_pattern="$1"
-                shift
+                shift 2
                 ;;
             -f|--force)
                 force_push=true
