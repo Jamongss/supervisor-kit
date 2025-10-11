@@ -64,9 +64,9 @@ log_message() {
     if [ "$LOG_TO_CONSOLE" = "true" ]; then
         case $level in
             CRITICAL) echo -e "\033[1;41;97m$log_entry\033[0m" ;; # 흰 글자 + 빨간 배경 + 굵게
-	    ERROR)    echo -e "\033[1;31m$log_entry\033[0m" ;;    # 굵은 빨간색
-	    WARN)     echo -e "\033[1;33m$log_entry\033[0m" ;;    # 굵은 노란색
-	    INFO)     echo -e "\033[1;32m$log_entry\033[0m" ;;    # 굵은 초록색
+            ERROR)    echo -e "\033[1;31m$log_entry\033[0m" ;;    # 굵은 빨간색
+            WARN)     echo -e "\033[1;33m$log_entry\033[0m" ;;    # 굵은 노란색
+            INFO)     echo -e "\033[1;32m$log_entry\033[0m" ;;    # 굵은 초록색
             DEBUG)    echo -e "\033[36m$log_entry\033[0m" ;;      # 청록색
         esac
     fi
@@ -140,7 +140,7 @@ graceful_shutdown() {
     log_warn "[Graceful_Shutdown] exit_code: $exit_code"
 
     if [ $exit_code -eq 0 ] || [ $exit_code -eq 3 ]; then
-	log_info "[Graceful_Shutdown] Supervisord status check passed (exit: $exit_code) – proceeding with shutdown"
+    log_info "[Graceful_Shutdown] Supervisord status check passed (exit: $exit_code) – proceeding with shutdown"
         :
     elif [ $exit_code -eq 2 ]; then
         log_error "[Graceful_Shutdown] Supervisord returned exit code 2 - Invalid command or syntax error"
