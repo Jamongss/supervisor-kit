@@ -1,3 +1,4 @@
 logs/
 run/
 cfg/replace_supervisord.conf
+*.pyc
