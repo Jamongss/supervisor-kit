@@ -130,10 +130,10 @@ check_git_status() {
     log_info "[Status] Current branch: $current_branch"
 
     # 변경사항 확인
-    if git diff --quiet && git diff --cached --quiet; then
-        log_warn "[Status] No changes detected in working directory"
-        return 1
-    fi
+#    if git diff --quiet && git diff --cached --quiet; then
+#        log_warn "[Status] No changes detected in working directory"
+#        return 1
+#    fi
 
     log_info "[Status] Changes detected in working directory"
 
