@@ -261,6 +261,90 @@ perform_git_push() {
     fi
 }
 
+# Pull Request 생성
+create_pull_request() {
+    local branch_name="$1"
+    local pr_title="$2"
+    local pr_body="$3"
+    local base_branch="${4:-main}"
+
+    log_info "[PR] Creating pull request for branch: $branch_name"
+
+    # gh CLI 사용 가능 여부 확인
+    if command -v gh >/dev/null 2>&1; then
+        log_info "[PR] Using GitHub CLI (gh) to create pull request"
+
+        # PR 제목이 없으면 커밋 메시지 사용
+        if [ -z "$pr_title" ]; then
+            pr_title=$(git log -1 --pretty=%s)
+        fi
+
+        # PR 본문이 없으면 기본 템플릿 사용
+        if [ -z "$pr_body" ]; then
+            pr_body="## Changes
+- Auto-generated pull request from push script
+
+## Branch
+- Source: \`$branch_name\`
+- Target: \`$base_branch\`
+
+## Commits
+$(git log $base_branch..$branch_name --oneline)
+"
+        fi
+
+        # gh CLI로 PR 생성
+        local pr_output
+        if pr_output=$(gh pr create --title "$pr_title" --body "$pr_body" --base "$base_branch" --head "$branch_name" 2>&1); then
+            log_info "[PR] Pull request created successfully"
+            echo "$pr_output" | tee -a "$LOG_FILE"
+
+            # PR URL 추출
+            local pr_url=$(echo "$pr_output" | grep -oE 'https://github.com/[^[:space:]]+')
+            if [ -n "$pr_url" ]; then
+                log_info "[PR] Pull Request URL: $pr_url"
+            fi
+            return 0
+        else
+            log_error "[PR] Failed to create pull request via gh CLI"
+            echo "$pr_output" | tee -a "$LOG_FILE"
+            return 1
+        fi
+    else
+        # gh CLI가 없으면 PR 생성 URL 제공
+        log_warn "[PR] GitHub CLI (gh) is not installed"
+        log_info "[PR] You can create a pull request manually using the URL below:"
+
+        # GitHub 저장소 URL 추출
+        local remote_url=$(git config --get remote.origin.url)
+        local repo_url=""
+
+        if [[ "$remote_url" =~ git@github.com:(.+)\.git ]]; then
+            repo_url="https://github.com/${BASH_REMATCH[1]}"
+        elif [[ "$remote_url" =~ https://github.com/(.+)\.git ]]; then
+            repo_url="https://github.com/${BASH_REMATCH[1]}"
+        elif [[ "$remote_url" =~ https://github.com/(.+) ]]; then
+            repo_url="https://github.com/${BASH_REMATCH[1]}"
+        fi
+
+        if [ -n "$repo_url" ]; then
+            local pr_create_url="${repo_url}/compare/${base_branch}...${branch_name}?expand=1"
+            log_info "[PR] =========================================="
+            log_info "[PR] Pull Request Creation URL:"
+            log_info "[PR] $pr_create_url"
+            log_info "[PR] =========================================="
+            echo ""
+            echo "Open this URL in your browser to create a pull request:"
+            echo "$pr_create_url"
+        else
+            log_error "[PR] Could not determine GitHub repository URL"
+            return 1
+        fi
+
+        return 0
+    fi
+}
+
 # 종료 시 정리 작업 (시그널 핸들러)
 cleanup_on_exit() {
     local exit_code=$?
@@ -289,6 +373,9 @@ OPTIONS:
     -r, --return            Return to original branch after push
     --no-push               Skip push step
     --existing-branch       Use current branch instead of creating new one
+    --pr                    Create pull request after push
+    --pr-title TITLE        Pull request title (default: commit message)
+    --pr-base BRANCH        Base branch for pull request (default: main)
 
 EXAMPLES:
     $0                                          # Auto-generate branch and commit message
@@ -299,6 +386,9 @@ EXAMPLES:
     $0 -r -m "Commit and return to main"        # Return to original branch
     $0 --existing-branch -m "Update"            # Use current branch
     $0 --no-push -m "Local commit"              # Commit only, no push
+    $0 -m "Add feature" --pr                    # Push and create pull request
+    $0 -m "Fix bug" --pr --pr-title "Bug Fix"   # Custom PR title
+    $0 -m "Update" --pr --pr-base develop       # PR to develop branch
 
 ENVIRONMENT VARIABLES:
     LOG_LEVEL       Set log level (DEBUG, INFO, WARN, ERROR, CRITICAL)
@@ -319,6 +409,9 @@ main() {
     local use_existing_branch=false
     local return_to_original=false
     local original_branch=""
+    local create_pr=false
+    local pr_title=""
+    local pr_base="main"
 
     # 인자 파싱
     while [ $# -gt 0 ]; do
@@ -328,19 +421,19 @@ main() {
                 exit 0
                 ;;
             -b|--branch)
-                branch_name="$1"
+                branch_name="$2"
                 shift 2
                 ;;
             -m|--message)
-                commit_message="$1"
+                commit_message="$2"
                 shift 2
                 ;;
             -p|--prefix)
-                branch_prefix="$1"
+                branch_prefix="$2"
                 shift 2
                 ;;
             -a|--add)
-                add_pattern="$1"
+                add_pattern="$2"
                 shift 2
                 ;;
             -f|--force)
@@ -358,6 +451,18 @@ main() {
             --existing-branch)
                 use_existing_branch=true
                 shift
+                ;;
+            --pr)
+                create_pr=true
+                shift
+                ;;
+            --pr-title)
+                pr_title="$2"
+                shift 2
+                ;;
+            --pr-base)
+                pr_base="$2"
+                shift 2
                 ;;
             *)
                 log_error "[Main] Unknown option: $1"
@@ -423,6 +528,15 @@ main() {
         fi
     else
         log_info "[Main] Skipping push as requested"
+    fi
+
+    # Pull Request 생성 (push 성공 시)
+    if [ "$create_pr" = true ] && [ "$push_failed" = false ] && [ "$skip_push" = false ]; then
+        log_info "[Main] Creating pull request..."
+        if ! create_pull_request "$branch_name" "$pr_title" "" "$pr_base"; then
+            log_warn "[Main] Failed to create pull request, but push was successful"
+            log_warn "[Main] You can manually create a PR later"
+        fi
     fi
 
     # 원래 브랜치로 복귀
