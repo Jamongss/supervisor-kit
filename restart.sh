@@ -25,8 +25,11 @@ set -e  # 오류 발생시 스크립트 중단
 # 로그 시스템 설정
 # =============================================================================
 
+# cwd 가 아니라 스크립트 위치 기준으로 경로를 잡음
+BASE_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+
 # 로그 설정 (환경변수로 오버라이드 가능)
-LOG_DIR="${LOG_DIR:-$PWD/logs/restart}"
+LOG_DIR="${LOG_DIR:-$BASE_DIR/logs/restart}"
 LOG_FILE="${LOG_FILE:-$LOG_DIR/restart.log.$(date '+%Y%m%d')}"
 LOG_LEVEL="${LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR, CRITICAL
 LOG_TO_FILE="${LOG_TO_FILE:-true}"
@@ -109,17 +112,37 @@ init_logging() {
 # =============================================================================
 
 # 설정 변수
-PWD="$(pwd)"
-SVD_PATH="$(pwd)/svd"
+SVD_PATH="$BASE_DIR/svd"
 SUPERVISORCTL_TIMEOUT=10
 SIGTERM_TIMEOUT=5
+
+# pid 파일을 먼저 보고, 없거나 맞지 않으면 계정 프로세스에서 이 키트의 svd 를 찾음
+_is_our_svd() {
+    local pid=$1 args
+    [ "$(ps -p "$pid" -o uid= 2>/dev/null | tr -d ' ')" = "$(id -u)" ] || return 1
+    args=$(ps -p "$pid" -o args= 2>/dev/null) || return 1
+    case "$args" in *python*" $SVD_PATH"|*python*" $SVD_PATH "*) return 0 ;; esac
+    # ./svd 상대경로 기동은 경로로 못 가려서 cwd 로 이 키트 것인지 확인함
+    printf '%s\n' "$args" | grep -qE "python[0-9.]* ([^ ]*/)?svd( |\$)" \
+        && [ "$(readlink "/proc/$pid/cwd")" = "$BASE_DIR" ]
+}
+find_svd_pids() {
+    local pid_file="$BASE_DIR/run/supervisord.pid" pid
+    if [ -r "$pid_file" ]; then
+        pid=$(tr -dc '0-9' < "$pid_file")
+        if [ -n "$pid" ] && _is_our_svd "$pid"; then echo "$pid"; return 0; fi
+    fi
+    ps -u "$(id -u)" -o pid=,args= | grep -E "python[0-9.]* ([^ ]*/)?svd( |\$)" \
+        | while read -r pid _; do _is_our_svd "$pid" && echo "$pid"; done
+    return 0
+}
 STARTUP_WAIT=5
 
 # 1단계: supervisorctl을 통한 정상 종료
 graceful_shutdown() {
     log_info "[Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ..."
 
-    if ! command -v $PWD/svctl &> /dev/null; then
+    if ! command -v $BASE_DIR/svctl &> /dev/null; then
         log_warn "[Graceful_Shutdown] supervisorctl command not found ..."
         return 1
     fi
@@ -127,13 +150,13 @@ graceful_shutdown() {
     log_debug "[Graceful_Shutdown] supervisorctl command found"
 
     # supervisord 상태 확인
-    $PWD/svctl status &> /dev/null 2>&1
+    $BASE_DIR/svctl status &> /dev/null 2>&1
     exit_code=$?
 
     log_info "[Graceful_Shutdown] svctl status"
     {
         echo "============================== svctl status raw output =============================="
-        $PWD/svctl status
+        $BASE_DIR/svctl status
         echo "====================================================================================="
     } | tee -a "$LOG_FILE"
 
@@ -154,18 +177,18 @@ graceful_shutdown() {
     fi
 
     log_info "[Graceful_Shutdown] Supervisord is responding. Stopping all supervised processes..."
-    if $PWD/svctl stop all 2>/dev/null; then
+    if $BASE_DIR/svctl stop all 2>/dev/null; then
         log_info "[Graceful_Shutdown] All supervised processes stop command sent"
         log_info "[Graceful_Shutdown] Waiting for process stop... 10s"
         sleep 10
 
         log_info "[Graceful_Shutdown] Sending shutdown command to supervisord..."
-        if $PWD/svctl shutdown 2>/dev/null; then
+        if $BASE_DIR/svctl shutdown 2>/dev/null; then
             log_info "[Graceful_Shutdown] Shutdown command sent successfully"
 
             # 정상 종료 완료 대기
             for i in $(seq 1 $SUPERVISORCTL_TIMEOUT); do
-                if ! ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep &> /dev/null; then
+                if [ -z "$(find_svd_pids)" ]; then
                     log_info "[Graceful_Shutdown] Graceful shutdown completed successfully"
                     return 0
                 fi
@@ -189,7 +212,7 @@ graceful_shutdown() {
 manual_termination() {
     log_info "[Manual_Termination] Attempting manual process termination"
 
-    local pids=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
+    local pids=$(find_svd_pids)
 
     if [ -z "$pids" ]; then
         log_info "[Manual_Termination] No python svd processes found"
@@ -198,8 +221,10 @@ manual_termination() {
 
     log_info "[Manual_Termination] Found python svd processes. PIDs: $pids"
     log_debug "[Manual_Termination] Process details:"
-    ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | while read line; do
-        log_debug "[Manual_Termination]  $line"
+    find_svd_pids | while read -r pid; do
+        ps -p "$pid" -f --no-headers | while read line; do
+            log_debug "[Manual_Termination]  $line"
+        done
     done
 
     # SIGTERM 시도
@@ -209,7 +234,7 @@ manual_termination() {
 
         # SIGTERM 대기
         for i in $(seq 1 $SIGTERM_TIMEOUT); do
-            local remaining=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
+            local remaining=$(find_svd_pids)
             if [ -z "$remaining" ]; then
                 log_info "[Manual_Termination] All processes terminated gracefully with SIGTERM"
                 return 0
@@ -219,7 +244,7 @@ manual_termination() {
         done
 
         # SIGKILL 시도
-        local remaining=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
+        local remaining=$(find_svd_pids)
         if [ -n "$remaining" ]; then
             log_warn "[Manual_Termination] SIGTERM timeout. Force killing remaining processes: $remaining"
             if kill -9 $remaining 2>/dev/null; then
@@ -227,7 +252,7 @@ manual_termination() {
                 sleep 2
 
                 # 최종 확인
-                local final_check=$(ps -u $(whoami) -f | grep "python $SVD_PATH" | grep -v grep | awk '{print $2}')
+                local final_check=$(find_svd_pids)
                 if [ -n "$final_check" ]; then
                     log_error "[Manual_Termination] Failed to terminate all processes even with SIGKILL: $final_check"
                     return 1
@@ -255,7 +280,7 @@ cleanup() {
     local cleaned_files=0
 
     # 설정 파일 제거
-    local conf_file="$PWD/cfg/replace_supervisord.conf"
+    local conf_file="$BASE_DIR/cfg/replace_supervisord.conf"
     if [ -f "$conf_file" ]; then
         if rm -f "$conf_file" 2>/dev/null; then
             log_info "[CleanUp] Removed replace_supervisord.conf"
@@ -268,7 +293,7 @@ cleanup() {
     fi
 
     # PID 파일들 제거
-    for pid_file in "$PWD/run/supervisord.pid"; do
+    for pid_file in "$BASE_DIR/run/supervisord.pid"; do
         if [ -f "$pid_file" ]; then
             if rm -f "$pid_file" 2>/dev/null; then
                 log_info "[CleanUp] Removed PID file: $(basename $pid_file)"
@@ -282,7 +307,7 @@ cleanup() {
     done
 
     # 소켓 파일들 제거
-    for sock_file in "$PWD/run/supervisor.sock"; do
+    for sock_file in "$BASE_DIR/run/supervisor.sock"; do
         if [ -S "$sock_file" ]; then
             if rm -f "$sock_file" 2>/dev/null; then
                 log_info "[CleanUp] Removed socket file: $(basename $sock_file)"
@@ -309,7 +334,7 @@ start_supervisord() {
     fi
 
     # 설정 파일 확인
-    local conf_file="$PWD/cfg/supervisord.conf"
+    local conf_file="$BASE_DIR/cfg/supervisord.conf"
     if [ ! -f "$conf_file" ]; then
         log_error "[Start] Configuration file not found at: $conf_file"
         return 1
@@ -326,13 +351,13 @@ start_supervisord() {
         sleep $STARTUP_WAIT
 
         # 상태 확인
-        $PWD/svctl status &> /dev/null 2>&1
+        $BASE_DIR/svctl status &> /dev/null 2>&1
         exit_code=$?
 
         log_info "[Start] svctl status check"
         {
             echo "============================== svctl status raw output =============================="
-            $PWD/svctl status
+            $BASE_DIR/svctl status
             echo "====================================================================================="
         } | tee -a "$LOG_FILE"
 

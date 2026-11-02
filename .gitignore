@@ -5,3 +5,6 @@ cfg/replace_supervisord.conf
 *.pem
 *.ppk
 *.swp
+back/
+*.bak
+*.back_*
